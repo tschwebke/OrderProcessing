@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LCIDs>
+  <LCID id="9" language="English - Worldwide" lang="en" />
+  <LCID id="1025" language="Arabic - Saudi Arabia" />
+  <LCID id="1026" language="Bulgarian" />
+  <LCID id="1028" language="Chinese - Taiwan" />
+  <LCID id="1029" language="Czech" />
+  <LCID id="1030" language="Danish" />
+  <LCID id="1031" language="German - Germany" />
+  <LCID id="1032" language="Greek" />
+  <LCID id="1033" language="English - United States" lang="en" />
+  <LCID id="1034" language="Spanish - Spain (Traditional)" />
+  <LCID id="1035" language="Finnish" />
+  <LCID id="1036" language="French - France" />
+  <LCID id="1037" language="Hebrew" />
+  <LCID id="1038" language="Hungarian" />
+  <LCID id="1039" language="Icelandic" />
+  <LCID id="1040" language="Italian - Italy" />
+  <LCID id="1041" language="Japanese" lang="ja" />
+  <LCID id="1042" language="Korean" />
+  <LCID id="1043" language="Dutch - Netherlands" />
+  <LCID id="1044" language="Norwegian - Norway (Bokml)" />
+  <LCID id="1045" language="Polish" />
+  <LCID id="1046" language="Portuguese - Brazil" />
+  <LCID id="1047" language="Raeto-Romance" />
+  <LCID id="1048" language="Romanian - Romania" />
+  <LCID id="1049" language="Russian" />
+  <LCID id="1050" language="Croatian" />
+  <LCID id="1051" language="Slovak" />
+  <LCID id="1053" language="Swedish - Sweden" />
+  <LCID id="1054" language="Thai" />
+  <LCID id="1055" language="Turkish" />
+  <LCID id="1056" language="Urdu" />
+  <LCID id="1057" language="Indonesian" />
+  <LCID id="1058" language="Ukrainian" />
+  <LCID id="1060" language="Slovenian" />
+  <LCID id="1061" language="Estonian" />
+  <LCID id="1062" language="Latvian" />
+  <LCID id="1063" language="Lithuanian" />
+  <LCID id="1064" language="Tajik" />
+  <LCID id="1065" language="Farsi - Persian" />
+  <LCID id="1066" language="Vietnamese" />
+  <LCID id="1070" language="Sorbian" />
+  <LCID id="1071" language="FYRO Macedonia" />
+  <LCID id="1072" language="Sesotho (Sutu)" />
+  <LCID id="1073" language="Tsonga" />
+  <LCID id="1074" language="Setsuana" />
+  <LCID id="1075" language="Venda" />
+  <LCID id="1076" language="Xhosa" />
+  <LCID id="1077" language="Zulu" />
+  <LCID id="1079" language="Georgian" />
+  <LCID id="1080" language="Faroese" />
+  <LCID id="1081" language="Hindi" />
+  <LCID id="1082" language="Maltese" />
+  <LCID id="1083" language="Sami Lappish" />
+  <LCID id="1084" language="Gaelic - Scotland" />
+  <LCID id="1085" language="Yiddish" />
+  <LCID id="1086" language="Malay - Malaysia" />
+  <LCID id="1087" language="Kazakh" />
+  <LCID id="1088" language="Kyrgyz - Cyrillic" />
+  <LCID id="1089" language="Swahili" />
+  <LCID id="1090" language="Turkmen" />
+  <LCID id="1091" language="Uzbek - Latin" />
+  <LCID id="1092" language="Tatar" />
+  <LCID id="1094" language="Punjabi" />
+  <LCID id="1095" language="Gujarati" />
+  <LCID id="1096" language="Oriya" />
+  <LCID id="1097" language="Tamil" />
+  <LCID id="1098" language="Telugu" />
+  <LCID id="1099" language="Kannada" />
+  <LCID id="1100" language="Malayalam" />
+  <LCID id="1102" language="Marathi" />
+  <LCID id="1103" language="Sanskrit" />
+  <LCID id="1104" language="Mongolian" />
+  <LCID id="1105" language="Tibetan" />
+  <LCID id="1106" language="Welsh" />
+  <LCID id="1107" language="Khmer" />
+  <LCID id="1108" language="Lao" />
+  <LCID id="1110" language="Galician" />
+  <LCID id="1111" language="Konkani" />
+  <LCID id="1112" language="Manipuri" />
+  <LCID id="1113" language="Sindhi" />
+  <LCID id="1114" language="Syriac" />
+  <LCID id="1115" language="Sinhala; Sinhalese" />
+  <LCID id="1120" language="Kashmiri" />
+  <LCID id="1121" language="Nepali" />
+  <LCID id="1122" language="Frisian - Netherlands" />
+  <LCID id="1124" language="Filipino" />
+  <LCID id="1136" language="Igbo - Nigeria" />
+  <LCID id="1140" language="Guarani - Paraguay" />
+  <LCID id="1142" language="Latin" />
+  <LCID id="1143" language="Somali" />
+  <LCID id="1153" language="Maori" />
+  <LCID id="1279" language="HID (Human Interface Device)" />
+  <LCID id="2052" language="Chinese - People's Republic of China" />
+  <LCID id="2055" language="German - Switzerland" />
+  <LCID id="2057" language="English - United Kingdom" />
+  <LCID id="2058" language="Spanish - Mexico" />
+  <LCID id="2060" language="French - Belgium" />
+  <LCID id="2064" language="Italian - Switzerland" />
+  <LCID id="2067" language="Dutch - Belgium" />
+  <LCID id="2068" language="Norwegian - Nynorsk" />
+  <LCID id="2070" language="Portuguese - Portugal" />
+  <LCID id="2072" language="Romanian - Moldova" />
+  <LCID id="2073" language="Russian - Moldova" />
+  <LCID id="2074" language="Serbian - Latin" />
+  <LCID id="2077" language="Swedish - Finland" />
+  <LCID id="2108" language="Gaelic - Ireland" />
+  <LCID id="2110" language="Malay - Brunei" />
+  <LCID id="2115" language="Uzbek - Cyrillic" />
+  <LCID id="2128" language="Mongolian" />
+  <LCID id="3076" language="Chinese - Hong Kong" />
+  <LCID id="3079" language="German - Austria" />
+  <LCID id="3081" language="English - Australia" />
+  <LCID id="3084" language="French - Canada" />
+  <LCID id="3098" language="Serbian - Cyrillic" />
+  <LCID id="4103" language="German - Luxembourg" />
+  <LCID id="4105" language="English - Canada" />
+  <LCID id="4106" language="Spanish - Guatemala" />
+  <LCID id="4108" language="French - Switzerland" />
+  <LCID id="5127" language="German - Liechtenstein" />
+  <LCID id="5129" language="English - New Zealand" />
+  <LCID id="5130" language="Spanish - Costa Rica" />
+  <LCID id="5132" language="French - Luxembourg" />
+  <LCID id="6153" language="English - Ireland" />
+  <LCID id="6154" language="Spanish - Panama" />
+  <LCID id="6156" language="French - Monaco" />
+  <LCID id="7177" language="English - Southern Africa" />
+  <LCID id="7178" language="Spanish - Dominican Republic" />
+  <LCID id="7180" language="French - West Indies" />
+  <LCID id="8201" language="English - Jamaica" />
+  <LCID id="8202" language="Spanish - Venezuela" />
+  <LCID id="9225" language="English - Caribbean" />
+  <LCID id="9226" language="Spanish - Colombia" />
+  <LCID id="9228" language="French - Congo" />
+  <LCID id="10250" language="Spanish - Peru" />
+  <LCID id="10252" language="French - Senegal" />
+  <LCID id="11273" language="English - Trinidad" />
+  <LCID id="11274" language="Spanish - Argentina" />
+  <LCID id="11276" language="French - Cameroon" />
+  <LCID id="12297" language="English - Zimbabwe" />
+  <LCID id="12298" language="Spanish - Ecuador" />
+  <LCID id="12300" language="French - Cote d'Ivoire" />
+  <LCID id="13321" language="English - Phillippines" />
+  <LCID id="13322" language="Spanish - Chile" />
+  <LCID id="13324" language="French - Mali" />
+  <LCID id="14345" language="English - Indonesia" />
+  <LCID id="14346" language="Spanish - Uruguay" />
+  <LCID id="14348" language="French - Morocco" />
+  <LCID id="15369" language="English - Hong Kong" />
+  <LCID id="15370" language="Spanish - Paraguay" />
+  <LCID id="16393" language="English - India" />
+  <LCID id="16394" language="Spanish - Bolivia" />
+  <LCID id="17417" language="English - Malaysia" />
+  <LCID id="17418" language="Spanish - El Salvador" />
+  <LCID id="18441" language="English - Singapore" />
+  <LCID id="18442" language="Spanish - Honduras" />
+  <LCID id="19465" language="English - UAE" />
+  <LCID id="19466" language="Spanish - Nicaragua" />
+  <LCID id="20490" language="Spanish - Puerto Rico" />
+  <LCID id="58378" language="Spanish - Latin America" />
+  <LCID id="58380" language="French - North Africa" />
+</LCIDs>

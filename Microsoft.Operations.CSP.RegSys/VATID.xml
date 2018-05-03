@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<countries>
+    <country name="Austria" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Bangladesh" Display="Please input company VAT ID." />
+    <country name="Belgium" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Bulgaria" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="China" Display="Please input company VAT ID." />
+    <country name="Croatia" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Cyprus" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Czech Republic" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Denmark" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Greenland, No VATID Required, No VAT Charged)" />
+    <country name="Estonia" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Fiji" Display="Please input company VAT ID." />
+    <country name="Finland" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Aaland Islands. No VATID Required, No VAT Charged)" />
+    <country name="France" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Martinique, French Guiana, Guadeloupe, Reunion And St. Pierre And Miquelon. No VATID Required, No VAT Charged)" />
+    <country name="Germany" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Busingen And The Isle Of Heligoland But Including Jungholz And Mittelberg. No VATID Required, No VAT Charged)" />
+    <country name="Greece" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except Fpr Mount Athos/Agion Poros. No VATID Required, No VAT Charged)" />
+    <country name="Hungary" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="India" Display="Valid company VAT/TIN/CST ID required. For tax inquiries, a Service Request needs to be filed." />
+    <country name="Indonesia" Display="Please input company VAT ID." />
+    <country name="Ireland" Display="Valid company VATID required. For VAT56B exemption processing, a Service Request needs to be filed within 30 days of activation." />
+    <country name="Italy" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For The Communes Of Livigno, Campione D'Italia, The Italian Waters Of Lake Lugano. No VATID Needed, No VAT Charged.)" />
+    <country name="Latvia" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Liechtenstein" Display="Valid company VATID required. For international organization exemption processing, a Service Request needs to be filed within 30 days of activation." />
+    <country name="Lithuania" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Luxembourg" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Malta" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Monaco" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Nepal" Display="Please input company VAT ID." />
+    <country name="Netherlands" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="New Zealand" Display="Please input company VAT ID." />
+    <country name="Norway" Display="Please input company VAT ID." />
+    <country name="Philippines" Display="Please input company VAT ID." />
+    <country name="Poland" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Portugal" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Puerto Rico" Display="Please input company VAT ID." />
+    <country name="Romania" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Slovakia" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Slovenia" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="South Africa" Display="Please input company VAT ID." />
+    <country name="Spain" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Ceuta, Melilla And Canary Islands Includes Tenerife, Fuerteventura, Gran Canaria, Lanzarote, La Palma, La Gomera And El Hierro. No VATID Required, No VAT Charged)" />
+    <country name="Sri Lanka" Display="Please input company VAT ID." />
+    <country name="Sweden" Display="Valid company VATID required. Without a valid VATID, local VAT will apply." />
+    <country name="Switzerland" Display="Valid company VATID required. For international organization exemption processing, a Service Request needs to be filed within 30 days of activation." />
+    <country name="Thailand" Display="Please input company VAT ID." />
+    <country name="United Kingdom" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Gibraltar And Channel Islands: Sark, Alderney, Brecqhou, Jethou, Chausey, Lihou, Guernsey, Herm, Jersey. No VATID Required, No VAT Charged)" />
+    <country name="UK" Display="Valid company VATID required. Without a valid VATID, local VAT will apply. (Except For Gibraltar And Channel Islands: Sark, Alderney, Brecqhou, Jethou, Chausey, Lihou, Guernsey, Herm, Jersey. No VATID Required, No VAT Charged)" />
+    <country name="Vietnam" Display="Please input company VAT ID." />
+</countries>	

@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Operations.CSP.Service", "Microsoft.Operations.CSP.Service\Microsoft.Operations.CSP.Service.csproj", "{0659CDEE-CCC7-4AF6-9C29-D59D13BA4746}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Operations.CSP", "Microsoft.Operations.CSP\Microsoft.Operations.CSP.csproj", "{A725319E-AA1F-4FFD-B029-BA5F43998BA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0659CDEE-CCC7-4AF6-9C29-D59D13BA4746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0659CDEE-CCC7-4AF6-9C29-D59D13BA4746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0659CDEE-CCC7-4AF6-9C29-D59D13BA4746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0659CDEE-CCC7-4AF6-9C29-D59D13BA4746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A725319E-AA1F-4FFD-B029-BA5F43998BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A725319E-AA1F-4FFD-B029-BA5F43998BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A725319E-AA1F-4FFD-B029-BA5F43998BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A725319E-AA1F-4FFD-B029-BA5F43998BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://vstfpg07:8080/tfs/operations
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Microsoft.Operations.CSP.Service\\Microsoft.Operations.CSP.Service.csproj
+		SccProjectName1 = Microsoft.Operations.CSP.Service
+		SccLocalPath1 = Microsoft.Operations.CSP.Service
+		SccProjectUniqueName2 = Microsoft.Operations.CSP\\Microsoft.Operations.CSP.csproj
+		SccProjectName2 = Microsoft.Operations.CSP
+		SccLocalPath2 = Microsoft.Operations.CSP
+	EndGlobalSection
+EndGlobal

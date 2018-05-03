@@ -1,0 +1,2175 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Operations</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Operations.AccountProperty">
+            <summary>
+            Shorthand syntax for referencing Active Directory property bag values
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.AccountProperty.EmailAddress">
+            <summary>
+            Fully-formed SMTP address
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.AccountProperty.DisplayName">
+            <summary>
+            Common name of object, as often seen in Outlook, usually applicable to all microsoft.com objects
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.AccountProperty.AccountAlias">
+            <summary>
+            8 characters or less, typically lowercase
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ActiveDirectory">
+            <summary>
+            Contains code which interacts with Active Directory - so you don't have to!!
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.DisplayName">
+            <summary>
+            Returns the display name of the current user, as identified by the WCF service in
+            relation to the caller. i.e. the WCF automatically determines the user alias and uses it
+            for a lookup in Active Directory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.DisplayNameFromAlias(System.String,System.String)">
+            <summary>
+            Performs a lookup in active directory, for a record, given the alias. Returns the display
+            name (friendly name). Optionally supply a DOMAIN in the forest for faster performance
+            (preferred if the domain is known). If a user wasn't found, test whether or not the name
+            belongs to a distribution group instead.
+            </summary>
+            <param name="userAlias">The user alias of the user to lookup.</param>
+            <param name="domainName">The domain which we expect (know) the user to be on.</param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.EmailAddressFromAliasDomain(System.String)">
+            <summary>
+            Allows supplying the identity information in the form of DOMAIN\alias, which is a
+            shorthand method. requires the presence of the slash, otherwise just returns an empty string.
+            </summary>
+            <param name="aliasIncludingDomainNamePrefix">
+            Identity of the user, in DOMAIN\alias format.
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.EmailAddressFromAliasDomain(System.String,System.String)">
+            <summary>
+            Returns the 'mail' attribute from the Active Directory lookup, given an account name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.EmailAddressFromDisplayName(System.String,System.String)">
+            <summary>
+            Returns the 'email' address (alias) of a active directory object, given only the display
+            name. Acheives this by performing a lookup on Active Directory, Use this method where the
+            email address is unknown. This function will also automatically check security group
+            names (but only if it can't find a user match).
+            EDIT: use 'mail' if you want the full email address
+            </summary>
+            <param name="displayName">The display name of the object, as found in Active Directory</param>
+            <param name="domainName">
+            Supply this value if it is known, otherwise we'll try find them based on
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.GetUserThumbnailPhotoFromAccount(System.String)">
+            <summary>
+            Gets the user thumbnail photo from active directory account.
+            </summary>
+            <param name="SAMAccountName">Security Accounts Manager account name (alias).</param>
+            <returns>Bitmap pictures in bytes.</returns>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.GlobalDirectoryLookupUserAccountProperty(System.String,System.String,System.String,System.String)">
+            <summary>
+            Universal lookup method which searches for a person/user object in active directory
+            across ALL forests. Errors will silently fail with a zero-length string returned.
+            IMPORTANT NOTES:
+            1. This search procedure returns the first found result (i.e. no support for multiples).
+            2. The named properties named must be the same format as used in LDAP searches.
+            3. The executing account for the web service (aka the Identity of the application pool)
+               needs to be a DOMAIN account - i.e. if it is running as 'LocalSystem' or
+               'NetworkService' then it won't work.
+            </summary>
+            <param name="outputProperty">
+            The property to load from the results (does not support multiples).
+            </param>
+            <param name="searchProperty">
+            The property we will be searching on (likewise, single value only) e.g. "SAMAccountName"
+            for Alias.
+            </param>
+            <param name="searchValue">The actual input - e.g. someone's user alias.</param>
+            <param name="domainName">
+            OPTIONAL: If known, this can help improve the search time by only searching a specific
+                      domain. Use string.Empty if not known.
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.IsCurrentUserMemberOfAnyOfTheFollowingGroups(System.String)">
+            <summary>
+            Returns information about group membership for a given user. Works with multiple groups
+            instead of single.
+            </summary>
+            <param name="delimitedGroupNames">
+            PIPE delimited values, group names. Ensure that each is in DOMAIN\name format.
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.IsCurrentUserMemberOfGroup(System.String)">
+            <summary>
+            Simple access to do a generic check for whether a user is a member of a security group.
+            This information is freely available from the corpnet active directory (it's not secret),
+            however this particular function checks the windows identity of the CURRENT CONNECTING
+            USER only. Various error return codes:
+            -1 = Not a member of group 0 = Unknown (failure to check / could not check) 1 = Is a
+             member of specified group.
+            </summary>
+            <param name="groupName">
+            The groupname must be in DOMAIN\alias format. If the group's display name is given, it
+            must first be converted.
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.IsUserMemberOfGroup(System.String,System.Security.Principal.WindowsPrincipal)">
+            <summary>
+            Quick check to determine whether a user is a member of a particular security group or
+            not. This includes Active Directory chained membership - e.g. is a member of group x,
+            which in turn is a member of y, etc. IMPORTANT NOTE: There are cases where IsInRole does
+            not work sometimes
+            TODO: Implement what is written in this link: http://stackoverflow.com/questions/323831/windowsprincipal-isinrole-and-universal-vs-global-active-directory-groups
+            </summary>
+            <param name="fullSecurityGroupName">The name of the security group.</param>
+            <param name="windowsUser">
+            Active Directory oject that you wish to perform the lookup on
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.LookupSecurityGroup(System.String,System.String,Microsoft.Operations.AccountProperty)">
+            <summary>
+            Security group lookup requires a different type of object for searching. This function
+            will return multiple results if applicable according to the search pattern (do with what
+            you want).
+            NOTE: Security groups are created on the REDMOND domain (so the domain specification is hardcoded).
+            Typically, use either one of the input parameters, with a string.Empty for the other value.
+            </summary>
+            <param name="displayName">
+            display name for lookup - use this when the group is known but not the alias.
+            </param>
+            <param name="emailAlias">
+            The alias by which the security group is known, not the full email address.
+            </param>
+            <param name="outputProperty">
+            Indicate which property is desired (choice based on enumerator, saves having to know the syntax)
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ActiveDirectory.LookupSecurityGroupMembers(System.String,Microsoft.Operations.AccountProperty)">
+            <summary>
+            Takes a given (redmond-domain-based) security group name, and returns the users (raw) who
+            are found to be members of that group.
+            NOTE: Only mail-enabled members will be shown, since it's assumed that we wish to use
+                  this for email distribution.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.Email">
+            <summary>
+            Useful methods to assist with the construction of HTML email, using the
+            Microsoft.Exchange.WebServices API.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.Email.AdjustDebugMode(Microsoft.Exchange.WebServices.Data.EmailMessage@,System.Boolean,Microsoft.Exchange.WebServices.Data.EmailAddress,System.String)">
+             <summary>
+             Forces the email being sent into 'debug mode', performs the following transforms:
+            
+             (a) Changes the specified recipient (b) Appends information and statistics about the
+             outgoing email.
+             </summary>
+             <param name="email">A reference to the email being modified, prior to being sent.</param>
+             <param name="isDebugMode">
+             false = ignore this completely, true = include debug information and re-route
+             </param>
+             <param name="tester">
+             Email address of the person who should received the email (instead) ... acts as an override.
+             </param>
+             <param name="additionalText">
+             Anything additional that you need to add (e.g. from the process which constructed the original)
+             </param>
+             <remarks>
+             This deliberately inserts the text outside the main html body, so that there is no need
+             for maintaining markers in the text.
+             </remarks>
+        </member>
+        <member name="M:Microsoft.Operations.Email.DetermineSMTPAddressFrom(System.String)">
+            <summary>
+            Attempts to return an SMTP address, accepts any kind of dodgy input.
+            1) SMTP Address, just returns that if valid
+            2) DOMAIN\alias ... will return in the form of alias@microsoft.com
+            3) Display Name ... any other condition - performs an Active Directory lookup
+            4) NEW TFS 2015.1 format ... "Marcel Dorner &lt;EUROPE\\marceldo&gt;"
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.Email.InsertImageFromResource(Microsoft.Exchange.WebServices.Data.EmailMessage@,System.String,System.String)">
+             <author>Warren James (Adecco)</author>
+             <summary>
+             Replaces an image in the HTML, turns it into an embedded image with as few arguments and
+             code as possible! The mechanic is an attachment, where the Exchange API handles the
+             serialization (read below for exact detail) Intended to keep calling code neat and tidy,
+             assumes the following conditions are true:
+            
+             (a) The HTML body content is already populated (i.e. call this last) (b) The calling
+             assembly has a resource in the /Images folder (default). (c) Resource is marked as
+             'embedded content' (d) Resource access modifier is 'public' (internal is the default) -
+             required so that the resources are visible
+            
+             This method is geared to reference the CALLING assembly to look for the embedded
+             resource. The images themselves are embedded as a multipart resource in the internal
+             MHTML generated. It does increase the size of the email however the benefit is that the
+             images are instantly visible (i.e. no download required) ... and do not require external
+             image/web hosting.
+             </summary>
+             <param name="email">
+             Reference to the original message object, required since it modifies the body text inside.
+             </param>
+             <param name="imageFullStringBetweenQuotes">
+             Name of the file, matching the item inside the html (e.g. "some_image_64.png")
+             </param>
+             <param name="alternateResourceLocation">
+             If the image is not in the /images namespace/folder, you can specify its resource name.
+             (fully qualified e.g. 'Microsoft.Operations.Webservices.Gallacake.Images.WinAzure_logo_Wht_rgb_D.png')
+             </param>
+             <remarks>
+             A Resource name typically inherits the folder it resides in. Full syntax often looks
+             something like the following pattern: "Microsoft.Calling.Assembly.Folder.Filename.ext" If
+             you're unsure of the resources in your assembly, you can easily index them using a
+             ResourceSet: http://stackoverflow.com/questions/2041000/loop-through-all-the-resources-in-a-resx-file
+             </remarks>
+             <todo>Need to add support for OTHER ASSEMBLIES</todo>
+        </member>
+        <member name="M:Microsoft.Operations.Email.InsertImageFromResource(Microsoft.Exchange.WebServices.Data.EmailMessage@,System.Drawing.Image,System.String)">
+            <summary>
+            Same image insertion, but using an Image already obtained.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.Email.NotifyAdministrator(System.String,System.String,System.String)">
+            <summary>
+            Quickly send an email to administor with a small/basic payload, from anywhere in the
+            program. Runs in the security context of the currently running account.
+            </summary>
+            <param name="emailSender">
+            Fully formed SMTP email address - denoting the mailbox in use, matching service account
+            </param>
+            <param name="subject">Basic subject line</param>
+            <param name="body">Body content anything you want (is HTML-based).</param>
+        </member>
+        <member name="T:Microsoft.Operations.BlacklistResult">
+            <summary>
+            A command/instruction which denotes how a subscription or email action should be treated.
+            Used for logging to the database.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.BlacklistResult.Allow">
+            <summary>
+            The email address was not found to be blacklisted, OR there is nothing currently
+            preventing this from being sent.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.BlacklistResult.Block">
+            <summary>
+            The email should not be sent because the address is blacklisted (with no exceptions)
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.BlacklistResult.BlockError">
+            <summary>
+            Indicates that the item is blocked because an error (not specified) was encountered.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.BlacklistResult.BlockNoise">
+            <summary>
+            Based on noise, block if does not meet the required noise level.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.BlacklistResult.Unknown">
+            <summary>
+            We don't have a result or the test has not yet been conducted.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.DeploymentEnvironment">
+            <summary>
+            Shorthand reference for which environment is being referred to. Normally useful for
+            translating directly into a string value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.DeploymentEnvironment.NON">
+            <summary>
+            'No Environment specified' or 'None'
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.DeploymentEnvironment.SIT">
+            <summary>
+            Security, Integration, Testing
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.DeploymentEnvironment.DEV">
+            <summary>
+            Developer environment - specifically instances mounted on individual developer machines.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.DeploymentEnvironment.UAT">
+            <summary>
+            User Acceptance Testing
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.DeploymentEnvironment.PROD">
+            <summary>
+            Production instance
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.FileProcessingStatus">
+            <summary>
+            Identifies the various stages/states associated with processing of files.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.FileProcessingStatus.Uploaded">
+            <summary>
+            File has been uploaded, but no further action has been taken.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.FileProcessingStatus.Validated">
+            <summary>
+            File has been validated, according to the base processing logic.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.FileProcessingStatus.Problematic">
+            <summary>
+            The file has some errors which prevents it from being used.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.WorkItemDynamics">
+            <summary>
+            Bitwise operators for identifying particular 'flags' about the outgoing message. IMPORTANT
+            NOTE: The balance of the chosen items is pretty important. Be careful about extending this
+            logic as it has the potential to become unbalanced.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.WorkItemDynamics.IsModified">
+            <summary>
+            Base, every work item which is referenced here, has typically just been modified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.WorkItemDynamics.NewWorkItem">
+            <summary>
+            The work item has been newly created. That generally means all the 'BEFORE' values are blank.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ErrorDetail">
+            <author>Riza Marhaban (Adecco)</author>
+            <summary>
+            Error Detail class to be use for <see cref="T:System.ServiceModel.FaultException`1"/>
+            </summary>
+            <remarks>
+            (notes by Warren) We don't often use all this functionality (which is heavily orientated
+            towards debugging) Should be:
+            1. Trimmed to minimal
+            2. Remove the 'Web App' stuff.
+            3. Made Compatible with 'Azure Logger' object.
+            4. overload 'base' functionality for common loads
+            5. Remove the 'gets or sets' default xml 'help' i.e. give more context around usage.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Operations.ErrorDetail.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Operations.ErrorDetail"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ErrorDetail.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Operations.ErrorDetail"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ErrorDetail.#ctor(System.Exception,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Operations.ErrorDetail"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.ErrorId">
+            <summary>
+            Gets or sets the error id.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.Filename">
+            <summary>
+            Gets or sets the filename.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.FriendlyMessage">
+            <summary>
+            Gets or sets the simple message for client user.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.LineNumber">
+            <summary>
+            Gets or sets the line number.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.Reason">
+            <summary>
+            Gets or sets the reason.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.StackTrace">
+            <summary>
+            Gets or sets the stack trace.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.ErrorDetail.UserAlias">
+            <summary>
+            Gets or sets the user alias.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ExchangeServiceAutomatic">
+             <summary>
+             Extension for EWS service which does a bunch of stuff so you don't need complex calling code.
+             Note: this does hide a fair amount of functionality, don't use it if you need full exposure
+                   on the EWS components.
+            
+             NOTES:
+            
+             1. This mechanic caches the Autodiscover Uri value, because although incredibly good and
+                wholesome, the Autodiscover method is expensive and slow so use this it will be accurate
+                and help performance a little.
+             Autodiscover: http://blogs.technet.com/b/exchange/archive/2008/08/08/3406026.aspx Technical
+                           Reference:
+                           http://msdn.microsoft.com/EN-US/library/office/dn659837%28v=exchg.150%29.aspx
+                           Also note: The cached value will only last as long as the MEMORY PROCESS for
+                           this item. If used for websites and you experience performance problems with
+                           sending, consider extending the expiry time on application pools, i.e. the
+                           default is only active for 20 minutes which is great if you have a lot of
+                           emails on a 'hot' service, but not so beneficial for sporadic usage. The actual
+                           cache time is set at the recommended 24 hours, but you can force this on a hot
+                           service by recycling the application pool.
+            
+             2. The value specified for ExchangeVersion is hardcoded here (e.g. 'Exchange2010_SP1'),
+                because if not specified then the default is used which is most often incorrect. The EWS
+                usage is a bit misleading &gt;&gt; the value is there because it dictates the formatting
+                for the SOAP messages which get SENT. For most of the time, if you choose a recent
+                Exchange Version, for the most part it should be compatible with the target Exchange Server.
+             BUT: This compatibility gets eroded over time as Exchange Versions come and go, so every few
+                  years this may need some fine-tuning.
+            
+             3. This class was built in response to the change of system accounts moving to the cloud
+                environment (ref: Task 4102). It's designed to reduce the inline code required for using
+                the EWS object, i.e. initialize using one line and the email address. Originally we used
+                "https://aps.mail.microsoft.com/ews/exchange.asmx" for the URL value, which was hardcoded
+                in most of our assemblies ;P But with the new cloud migration it should have this value
+                most of the time: "https://apj.cloudmail.microsoft.com/ews/exchange.asmx".
+             </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExchangeServiceAutomatic.New(System.String)">
+            <summary>
+            Creates an ExchangeService object which already has all the settings you're likely to encounter.
+            1. Uri is set for you automatically (using autodiscover + cache combination)
+            2. RequestedServerVersion is set the default for this assembly (may need adjusting on
+               future Exchange Versions).
+            3. The security context uses the current windows identity by default - see notes.
+            </summary>
+            <param name="emailAddress">
+            Full SMTP address of the account nominated for mailbox &gt;&gt; which helps find the
+            mailbox location. Please note the final connection will actually use the security context
+            of the connecting thread! If they are not the same, you might get strange results with
+            the email sending.
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ExchangeServiceAutomatic.New(System.String,System.String)">
+            <summary>
+            This overload allows you to supply an alternate WebCredentials identity. Use with TESTING
+            ONLY, since it is not best practice to have passwords embedded in the code!
+            </summary>
+            <param name="emailAddress">Full SMTP address of the account you will be using.</param>
+            <param name="accountPassword">
+            Supplying this value will force the service to be in the security context of that
+            account, not supplying it will force to use the executing thread.
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ExchangeServiceAutomatic.RedirectionCallback(System.String)">
+            <summary>
+            Usage is described in the Exchange Web Services document, but it is way confusing.
+            Essentially, it's a way that any redirections can be verified. This will occur most often
+            with any REDMOND domain addresses, where more than one server may be in operation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServerHelper.Clone(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItem)">
+            <summary>
+            Shallow clone, copies across attributes (v. basic)
+            </summary>
+            <param name="wi">The workitem you wish to make a copy of</param>
+            <remarks>Probably a better way of doing this (later)</remarks>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServerHelper.GetFieldValue(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItem,System.String)">
+            <summary>
+            </summary>
+            <param name="wi"></param>
+            <param name="fieldName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServerHelper.LastChangedAgeInMinutesIsAtLeastMoreThan(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItem,System.Int32)">
+            <summary>
+            Shorthand check for the 'Changed Date' value, compared to current date/time.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServerHelper.ValidatesOkay(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItem,AzureLogger)">
+             <summary>
+             OUR CUSTOM VALIDATION routine, useful for Windows Services because it automatically sends
+             (us) a notification if there are any errors. This helps us keep on top of any
+             template/rules violations which are otherwise difficult in a headless environment!
+            
+             The routine itself performs the following:
+             1. Determines if the Work Item is 'dirty' (i.e. changes have actually been made) if not,
+                returns false right away.
+             2. Verifies there are zero validation errors from the inbuilt 'Validate()' method.
+             3. Emails any error messages with some information
+            
+             If errors are found, an email will automatically go to the DevOps group nominated, using
+             a specially formatted email with all the details of the process.
+            
+             TODO: this routine would be more useful if it had the option of returning the 'error set'
+             </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServerHelper.ExecuteQueryText(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore,System.String)">
+            <summary>
+            Note: This version does not support wildcards like @project - could be extended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.AddDays(System.DateTime,System.Int32,System.DayOfWeek[])">
+            <summary>
+            Use for adding business days only, by excluding specific days from the count.
+            </summary>
+            <param name="dayCount">The expected number of days you want to add</param>
+            <param name="notIncludedDays">Specify which days do NOT count</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.IsBusinessHours(System.DateTime,System.Int32,System.Int32)">
+            <summary>
+            Determines whether or not the sample time falls into Mon-Fri 9.00am to 5.00pm
+            </summary>
+            <param name="startHour">change if you need something different than 9.00</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.MonthName(System.DateTime)">
+            <summary>
+            Similar to the Visual Basic method, gives the month name in full. (but without needing a
+            reference to the Visual Basic DLL). Not very sophisticated, but it does get used a lot in reports.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.ToTimeInZone(System.DateTime,System.String)">
+            <summary>
+            Convert a UTC Date to a named TimeZone to find out the local time in that timezone
+            TODO: Merge this with the equivalent in 'Date Magic'
+            </summary>
+            <param name="utcDate">A UTC date that you want to use</param>
+            <param name="timeZoneName">e.g. "Eastern Standard Time" or "Pacific Standard Time"</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.After(System.String,System.String)">
+            <summary>
+            Get string value after [last] a.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Before(System.String,System.String)">
+            <summary>
+            Get string value after [first] a.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Between(System.String,System.String,System.String)">
+            <summary>
+            (Alternate Method) Get string value between [first] a and [last] b.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Contains(System.String,System.Enum)">
+            <summary>
+            Turns the enumerator into a string value and uses it directly as an extension of
+            'Contains'. Makes for easier shortFhand when working between enumerators and strings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            A way to get around the restriction of case-sensitive nature, ref: https://connect.microsoft.com/VisualStudio/feedback/details/435324/the-string-contains-method-should-include-a-signature-accepting-a-systen-stringcomparison-value
+            </summary>
+            <param name="str"></param>
+            <param name="value"></param>
+            <param name="comparisonType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.EqualsIgnoreCase(System.String,System.String)">
+            <authors>Isaac Schlueter (http://www.linkedin.com/pub/dir/isaac/schlueter)</authors>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.ExtractEmailAddresses(System.String)">
+            <summary>
+            Returns collection of email addresses which might be found in the string, using Regular
+            Expressions for well-formed emails only. A blank string will return an empty List.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Fill(System.String,System.Object[])">
+            <authors>Isaac Schlueter (http://www.linkedin.com/pub/dir/isaac/schlueter)</authors>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.FixedArticleBeforeVowelSound(System.String)">
+            <summary>
+            Generic method to find the article 'a' in a sentence before a vowel sound and replace it
+            with article 'an'
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.GetTextBetween(System.String,System.String,System.String)">
+            <summary>
+            Returns empty if no valid match. IS CASE SENSITIVE!
+            </summary>
+            <param name="input"></param>
+            <param name="firstOccurenceText"></param>
+            <param name="lastOccurenceText"></param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.IsBlank(System.String)">
+            <summary>
+            Determines whether the string contained whitespace or not (as its only content). This is
+            useful shorthand for combining with some tests in the case where the string is expected
+            to contain whitespace but nothing else. For example, if the string value is " " (i.e.
+            contains spaces) then this method returns a more correct result:
+            - IsNullOrEmpty = false
+            - IsBlank = true
+            NOTE: You can achieve the same in your own code by using the Trim() method
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.IsEmpty(System.String)">
+            <summary>
+            Indicates whether the specified String object is null or an Empty string. IMPORTANT NOTE:
+            this is a SHORTHAND wrapper for IsNullorEmpty(string).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.IsNumeric(System.String)">
+            <summary>
+            Specifies whether the input is numeric in nature (i.e. could it be parsed into a number?)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.IsValidEmailAddress(System.String)">
+            <summary>
+            Used to check whether the email format is valid or not, using basic pattern matching from
+            regular expressions.
+            NOTE: Does not detect the newer (non-standard) top level domains like .asia
+            </summary>
+            <remarks>
+            The exact regular expression validation is a matter of debate (see various internet
+            forums) However, this is one of the more complete definitions that we found. The
+            expression has been condensed to just one line for the sake of brevity.
+            </remarks>
+            <returns>Returns true if it has valid format (using 'IsMatch' method)</returns>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.IsValidUrl(System.String)">
+            <summary>
+            Checks if url is valid. from http://www.osix.net/modules/article/?id=586 and changed to
+            match http://localhost The complete (not only http) url regex can be found at http://internet.ls-la.net/folklore/url-regexpr.html
+            </summary>
+            <remarks>
+            This implementation describes the parts which are used for validation, which is helpful
+            for interpreting the logic being applied.
+            </remarks>
+            <authors>Tomas Kubes (tomas_kubes@seznam.cz)</authors>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.LastValueOfArrayBasedSplit(System.String,System.String)">
+            <summary>
+            Using the reference string, and the nominated split value, automatically grabs the last
+            occurrence of the value, based on the split. This is a handy shortcut to get that last value.
+            </summary>
+            <param name="characterSplitSequence">
+            Single or multiple character which will be used with the 'split' routine.
+            </param>
+            <returns>
+            The potential split item, assuming it exists, but if not then the original string.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Left(System.String,System.Int32)">
+            <summary>
+            A very basic 'trim' function which truncates the given string using the given number of
+            characters, starting from the left position.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.MaxLength(System.String,System.Int32)">
+            <summary>
+            Forces a truncation on a given string, at a given length.
+            TODO: This should be merged with 'Truncate', which is a better extension
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.RegexReplace(System.String,System.String,System.String)">
+            <authors>Isaac Schlueter (http://www.linkedin.com/pub/dir/isaac/schlueter)</authors>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.RegexReplace(System.String,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <authors>Isaac Schlueter (http://www.linkedin.com/pub/dir/isaac/schlueter)</authors>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.RemoveNonAlphanumeric(System.String)">
+            <summary>
+            Special whitespace elimination
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.RemoveRange(System.String,System.Int32,System.Int32)">
+            <authors>Isaac Schlueter (http://www.linkedin.com/pub/dir/isaac/schlueter)</authors>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.ReplaceImageSource(System.String,System.String,System.String)">
+            <summary>
+            Generic method to find the article 'a' in a sentence before a vowel sound and replace it
+            with article 'an'
+            </summary>
+            <param name="imageID">e.g. 992e9bbf-79b3-46db-8cf2-7e0f1bec868d</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.ToDigitsOnly(System.String)">
+            <summary>
+            Strips a string of everything except for 0-9
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.ToString(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Flatten a list of string, using a delimiter
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.ToTitleCase(System.String)">
+            <summary>
+            Shortcut to the TextInfo class, requires accessing the current thread .. Use sparingly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtensionMethods.Truncate(System.String,System.Int32,System.String)">
+            <summary>
+            Truncates a string so that it will fit the specified length, but allows placement of text
+            at the end.
+            </summary>
+            <param name="len">Number of characters which represents the ceiling of what you want</param>
+            <param name="appendix">value which will be placed at the end of the truncation</param>
+        </member>
+        <member name="M:Microsoft.Operations.Extensions.GetFilesByExtensions(System.IO.DirectoryInfo,System.String[])">
+            <summary>
+            usage: dInfo.GetFilesByExtensions(".jpg",".exe",".gif");
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.Extensions.IsNumeric(System.Object)">
+            <summary>
+            Simple test to see whether an object/input is purely numeric.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendStreamWriter.WriteEntry(System.IO.StreamWriter,System.String)">
+            <summary>
+            Used for Logfile writing, automatically appends a datetime stamp to the front of the line
+            (so you don't have to do it in the code).
+            </summary>
+            <param name="inputText">The text you want to commit to the file</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendStreamWriter.WriteEntry(System.IO.StreamWriter,System.String,System.Object[])">
+            <summary>
+            Used for Logfile writing, automatically appends a datetime stamp to the front of the
+            line. Can use arguments for formatting if desired.
+            </summary>
+            <param name="inputText">
+            The text you want to commit to the file, which may have items like '{0}'
+            </param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendXElement.GetCoreFieldValue(System.Xml.XmlElement,System.String,System.String,System.String)">
+            <summary>
+            from: TEAMFOUNDATIONSERVER XML NOTIFICATIONS Default fetch is from 'StringFields'.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendXElement.GetCoreFieldValue(System.Xml.XmlElement,System.String,System.String,System.String,System.String)">
+            <summary>
+            from: TEAMFOUNDATIONSERVER XML NOTIFICATIONS Extracts a text value from some of the core
+            fields of the work item, assuming it exists. which comes from "CoreFields" section, where
+            the data is always present in every packet.
+            NOTE: In theory some of these fields (like WorkItemID) never change, even though
+                  'OldValue' and 'NewValue' are both present, with the exception of where the field
+            value (in TFS) doesn't actually HAVE a value (e.g. 'Assigned To' is blank). For fields
+            where the data exists but has not changed, the 'OldValue' and 'NewValue' text will be the same.
+            TODO: Change the 'section' and 'target' to enumerators - that would be a bit cleaner.
+            </summary>
+            <example>
+            System.Id, System.Rev, System.AreaId, System.WorkItemType, System.Title, System.AreaPath,
+            System.State, System.Reason, System.AssignedTo, System.ChangedBy, System.CreatedBy,
+            System.ChangedDate, System.CreatedDate, System.AuthorizedAs, System.IterationPath,
+            </example>
+            <param name="section">"CoreFields" or "ChangedFields" (only)</param>
+            <param name="target">
+            String values .... 'OldValue' or 'NewValue' only, otherwise you might get an error.
+            </param>
+            <param name="fieldDataType">Specify 'StringFields' or 'IntegerFields'</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendXElement.IsFieldModified(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            from: TEAMFOUNDATIONSERVER XML NOTIFICATIONS Examines the (string) contents of a
+            specified (string) field and returns true if it appears the item has changed. i.e.
+            between NewValue and OldValue. NOTE: If the item can't be found then it will return false.
+            </summary>
+            <param name="section">"CoreFields" or "ChangedFields" (only)</param>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendAssembly.GetVersion(System.Reflection.Assembly)">
+            <summary>
+            Returns information about the build/assembly version in #.#.#.# format.
+            NOTE: This implementation is dependent on the 'Assembly' information being set to '1.0.*'
+            If you notice that the build information is not displaying as expected, then check that first.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ExtendXmlDocument.LoadFromRootDirectory(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Shortcut which allows you to specify the loading of an xml file which is located at the
+            root. Saves you the hassle of having to do the complicated code of finding the actual
+            location on disk.
+            TODO: XElement also has a load method, and may be more efficient.
+            TODO: This needs some cleaning up, very sloppy (by me)
+            </summary>
+            <param name="doc">The document object you need to fill, which you don't mind overwriting.</param>
+            <param name="filenameSittingInApplicationRootDirectory">
+            name of the .config file, which (MUST) be located in the root directory.
+            </param>
+        </member>
+        <member name="P:Microsoft.Operations.FileSystem.BaseFolder">
+            <summary>
+            The location of a folder which can be used by the application (normally used for Logfiles
+            and Temporary files). Use this location in favour of any other 'special' location for
+            files, always has permission to write here (is the officially preferred)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.FileSystem.ExecutingFolder">
+            <summary>
+            Using reflection, the location of the folder for the executing binaries. Credits to
+            StackOverflow (scrapped our original)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.FileSystem.ExecutingFolderFile(System.String)">
+            <summary>
+            MAKE THIS OBSOLETE
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.FileSystem.GetEmbeddedFileContent(System.String,System.String)">
+            <summary>
+            For resource files where the content is known to be string, this is an easy and efficient
+            way to extract the contents. The name of the resource/file within ... e.g. 'Microsoft.Operations.Webservices.Templates.QueryCapacityAllocations.wiq'
+            TODO: Need a version which defaults to calling assembly (for a shorter signature)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.FileSystem.Logfile(System.String,System.String,System.String)">
+            <summary>
+            A StreamWriter object which can be used to write logfile entries (with 24-hour rollover)
+            Automatically determines location (ProgramData folder) and will reuse an existing day if
+            it exists. Current code assumes no locks on the file specified. UPDATED to use very
+            unique filename ...
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.FileSystem.WorkingFolder(System.String,System.String)">
+            <summary>
+            Allows calling code to specify a new working folder intside the ProgramData, and will
+            create if not already existing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.Maths">
+            <summary>
+            Maths and other number functions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.Maths.RandomNumber(System.Int32,System.Int32)">
+            <summary>
+            Provides a random number from the internal generator. Preferred method because it
+            provides TRUE random numbers.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ABOProject">
+            <summary>
+            Work item structure which matches the ABO Project template. Actually it is identical to 'CBO
+            Project' in terms of scoring since they share all the same fields. The item is kept separate
+            in case any custom logic needs to be applied.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ABOProject.CalculationIsCorrect">
+            <summary>
+            Looks at the loaded figures and determines if the calculation is correct or not.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ExternalTeam">
+            <summary>
+            These are the 'team values' which are tracked separately in the 'Search template' grid. The
+            numeric values can be used in the decimal array, be careful with the ordering !
+            </summary>
+        </member>
+        <member name="F:Microsoft.Operations.ExternalTeam.Average">
+            <summary>
+            Special, holds the average for all groups
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ABOProject_Search">
+             <summary>
+             Similar to ABO Project, but the 'Search' version has so many different fields that it really
+             is like a completely separate template rather than being a branch of "ABO Project". Isolated
+             now as a separate class to make future adjustments easier.
+            
+             There are over 100 fields involved in their calculation mechanic so we'll use shorthand where
+             possible, including arrays for similar grid values.
+             </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ABOProject_Search.CalculationIsCorrect">
+            <summary>
+            Looks at the loaded figures and determines if the calculation is correct or not.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ABOProject_Search.LoadedEqualsCalculated``1(``0[0:,0:])">
+            <summary>
+            Compares a 'loaded' value with the same 'calculated' value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ABOProject_Search.TShirtSizeBasedOn(System.Decimal)">
+            <summary>
+            NOTE: No provision for negative numbers (0,1 = Low; 2,3 = Medium; 4,5 = High).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ABOProject_Search.AverageFrom(System.Decimal[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            Use our own Average method (rather than LINQ) because we have a specialized requirement
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.CBOProject">
+            <summary>
+            Work item strcture which matches the CBO Project template.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.CBOProject.CalculationIsCorrect">
+            <summary>
+            Looks at the loaded figures and determines if the calculation is correct or not.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.CloudTfsUserSetting">
+            <summary>
+            Use DOMOAIN\alias for RowKey ...
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.CloudTfsUser">
+            <summary>
+            Use DOMOAIN\alias for RowKey ...
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudInitiative.FilterValues">
+            <summary>
+            Large string which can contain summaries useful for filtering (general use)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudInitiative.ImportanceScore">
+            <summary>
+            This is actually the CUMULATIVE score of all sub-projects importance, which is then used
+            later to determine rank.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudInitiative.ProjectStatus">
+            <summary>
+            This is a red/yellow/green, but allows multiples, e.g. RRRGGGYY
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudInitiative.StrategyCode">
+            <summary>
+            Which OBO (Mike Novasio) strategy is paired with this initiative? (if any?) Abbreviated
+            form, 1-1 relationship
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudInitiative.Title">
+            <summary>
+            Primary text name of the intiative (display version)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.CloudContact">
+            <summary>
+            Use display name for RowKey ...
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.CloudProject">
+            <summary>
+            Fields common to CBO template (at this stage)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.Audience">
+            <summary>
+            "blank, partner, customer, developer, internal" From the multi-select option. Used for
+            filtering in the website.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.CapabilitiesImpacted">
+            <summary>
+            Multi-select fields, contains delimited []
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.CompoundKey">
+            <summary>
+            combination of the two
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.ImportanceScore">
+            <summary>
+            Value from the common scoring system. This will be summed in order to get the most
+            important initiative.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.Initiative">
+            <summary>
+            2. The 'set' to which this project belongs to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.InitiativeCode">
+            <summary>
+            this is designed to fully replace 'InitiativeRowKey' (is the same value)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.InitiativeRowKey">
+            <summary>
+            Depracated, will replace.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.OperatingModelsImpacted">
+            <summary>
+            This is an illegitimate field -&gt; shouldn't exist, this is a subclass of 'dependencies'
+            in general
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.ProjectPriority">
+            <summary>
+            Project priority is an Integer field inside the system. It is not always used for
+            calculations, but is nearly always present regardless of template.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.ResourcesListingDelimited">
+            <summary>
+            Contains tabular data, that we have to unpack. List of People/folk ... and their alias
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.Strategy">
+            <summary>
+            1. This is the 'Mike Novasio' strategy level.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.StrategyCode">
+            <summary>
+            and the abbreviated, lower-case value, for use with the website ...
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.TeamOwnership">
+            <summary>
+            Does this belong to ABO, CBO or SBO? (singular only) (determined from the original name
+            of template)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.Updates">
+            <summary>
+            This is actually a more compact name for 'Critical Issues, Risks and Mitigation Plans'
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.CloudProject.VSTFUrl">
+            <summary>
+            The URL as given for a link back to the main TFS site.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.TeamFoundationServer.ProjectType">
+            <summary>
+            Psuedo-class for WorkItemTypeCollection
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.TeamFoundationServer.FieldItem">
+            <summary>
+            A shallow copy of the FieldDefinition object. Use for cataloging.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.TeamFoundationServer.FieldItemUsage">
+            <summary>
+            Field usage with a whole lot more information attached (used for reporting)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.TeamFoundationServer.FieldItemUsage.IsInLayout">
+            <summary>
+            Simple flag to indicate whether the field is contained in the layout or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.TeamFoundationServer.FieldItemUsage.IsInWorkflow">
+            <summary>
+            Simple flag to indicate whether the field is uses as part of the workflow in a certain template
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.TeamFoundationServer.FieldItemUsage.OrderOfAppearanceInLayout">
+            <summary>
+            Number which indicates the order of appearance of a field in the <![CDATA[<LAYOUT>]]>
+            section of a work item template.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.TeamFoundationServer.TfsTempWorkspace">
+             <summary>
+             Borrowed from
+             http://www.vlaquest.com/2012/07/tfs-api-a-tiny-class-to-help-with-tfs-workspace-creation-and-cleanup/
+             Also refer MSDN: http://msdn.microsoft.com/en-us/magazine/jj883959.aspx
+             </summary>
+             <summary>
+             Tiny helper class for using temporary workspaces. It will create and remove a workspace for
+             you, so that you don't have to manage it in code.
+             </summary>
+             <example>
+             TfsTeamProjectCollection tfs = new TfsTeamProjectCollection(new Uri(serverName));
+             tfs.EnsureAuthenticated(); VersionControlServer vcs = (VersionControlServer)tfs.GetService(typeof(VersionControlServer));
+            
+             using (var tempWorkspace = new TfsTempWorkspace(vcs, "ServiceAccountWorkspace",
+             string.Format(@"{0}\{1}", Environment.UserDomainName, Environment.UserName))) { string
+             localPath = tempWorkspace.Map(string.Format("$/{0}/Reconcillation_Files", projectName),
+             FileSystem.WorkingFolder("Gallacake", "Temp"));
+            
+             if (vcs.ServerItemExists(expectedLocationInVersionControl, ItemType.File)) { // If the same
+             named item already exists, this will do a write-over. // Technically this will never happen
+             by the logic of the previous processing, // but in situations where the item is being
+             replayed, this is useful. tempWorkspace.Workspace.PendEdit(finalSpreadsheet.FullName); } else
+             { tempWorkspace.Workspace.PendAdd(finalSpreadsheet.FullName); }
+            
+             int changesetNumber =
+             tempWorkspace.Workspace.CheckIn(tempWorkspace.Workspace.GetPendingChanges(), versionControlCheckinComment);
+            
+             sw.WriteLine("{0} Version Control: Changeset # {1} File: {2}", DateTime.Now, changesetNumber,
+             localPath); }
+             </example>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServer.TfsTempWorkspace.#ctor(Microsoft.TeamFoundation.VersionControl.Client.VersionControlServer,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a workspace. If a workspace with the same name exists, it will be deleted and
+            recreated! For best results, give your workspace a relatively unique name. ALSO Note:
+            when the item gets disposed, all local files are also removed (i.e. because they are all committed)
+            </summary>
+            <param name="deleteExistingFilesPriorToMapping">
+            Indicates whether you want to flush the files in the nominated directory. Set to true if
+            you need it to start clean.
+            </param>
+        </member>
+        <member name="P:Microsoft.Operations.TeamFoundationServer.TfsTempWorkspace.Workspace">
+            <summary>
+            Give access to many properties of the workspace
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServer.TfsTempWorkspace.Dispose">
+            <summary>
+            All local files are deleted, and the workspace is then removed from the server
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TeamFoundationServer.TfsTempWorkspace.Map(System.String,System.String)">
+            <summary>
+            Adds a mapping to the workspace. The local folders and files will be created under the
+            user TEMP directory.
+            </summary>
+            <param name="serverPath">Full path on server, starting from root, ex: $/MyTP/MyFolder</param>
+            <param name="localRelativePath">A relative path inside the local workspace folder structure</param>
+            <returns>The local full path</returns>
+        </member>
+        <member name="T:Microsoft.Operations.SBOProject">
+            <summary>
+            Work item strcture which matches the SBO Project template. This is a simpler version compared
+            with CBO or SBO.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.SBOProject.CalculationIsCorrect">
+            <summary>
+            Looks at the loaded figures and determines if the calculation is correct or not.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TfsHelper.GetCoreFieldValue(System.Xml.XmlElement,System.String,System.String,System.String)">
+            <summary>
+            TODO: These should be in common TFS library
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.TfsHelper.IsFieldModified(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            Examines the (string) contents of a specified (string) field and returns true if it
+            appears the item has changed. i.e. between NewValue and OldValue. NOTE: If the item can't
+            be found then it will return false.
+            </summary>
+            <param name="section">"CoreFields" or "ChangedFields" (only)</param>
+        </member>
+        <member name="M:Microsoft.Operations.TfsHelper.LookupGroupMembership(System.String,System.String)">
+            <summary>
+            NOTE: This is an expensive operation, so where possible
+            </summary>
+            <param name="tfsUri">
+            url of the server, e.g. "http://vstfpg07:8080/tfs/Operations", this is not project sensitive.
+            </param>
+            <param name="groupName">Name of TFS Group or Team you want to iterate members of.</param>
+        </member>
+        <member name="M:Microsoft.Operations.TfsHelper.LookupUserEmail(System.String,System.String)">
+            <summary>
+            Identifies an email address based on a user in Team Foundation Server
+            </summary>
+            <param name="tfsUri">Collection information / URL</param>
+            <param name="userDisplayName">Full display name of the person you wish to find</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Operations.TfsHelper.RetrieveEntireWorkItem(Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore,System.Int32)">
+            <summary>
+            TODO: Requires unification
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.WorkItemClone">
+            <summary>
+            The normal TFS API WorkItem object is sealed. This class allows you to extend it, but
+            requires copying as a shallow clone.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.XBOCommonFields">
+            <summary>
+            Fields common to CBO template (at this stage)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.XBOCommonFields.BusinessImpactScore">
+            <summary>
+            Value between 1 and 225, calculated from various "Importance" and "Complexity" fields.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.XBOCommonFields.ComplexityProjectSize">
+            <summary>
+            String value, sizes from "Microsoft.Operations.Project.Complexity.Size" values are: L, M,
+            S, XL These are then used for some calculations based on the value ...
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.XBOCommonFields.ImportanceComplianceText">
+            <summary>
+            Importance values are: 'Extremely High' = 5 'High' = 3 'Medium' = 1 'Low' = 0
+            </summary>
+        </member>
+        <member name="P:Microsoft.Operations.XBOCommonFields.ProjectPriority">
+            <summary>
+            Project priority is an Integer field inside the system. It is not always used for
+            calculations, but is nearly always present regardless of template.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.XBOCommonFields.Calculate(System.Int32)">
+            <summary>
+            Typically called after all the values are loaded, or independently for a recalculation.
+            Supply value: ZERO = calculate against the loaded ones (normal CBO Project) ONE =
+            calculate against other calculated fields (e.g. for ABO Search)
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.Webservices.MultipleHostsFactory">
+            <summary>
+            Making a reference to this Factory allows your webservice to run on IIS even if other
+            addresses are specified. This is a scenario which may only be encountered when you deploy to
+            production, whereby other endpoints are present because of multiple sites or a shared
+            environment. To use this in your webservice code, add the factory reference to your .SVC
+            markup; for example: CodeBehind="v20100217.svc.cs"
+            Factory="Microsoft.Operations.Webservices.MultipleHostsFactory" The way this works is that it
+            effectively neutralizes (overwrites) any other addresses which may be present. for more
+            details, refer: http://blog.ranamauro.com/2008/07/hosting-wcf-service-on-iis-site-with_25.html
+            </summary>
+            <remarks>
+            NOTE: This architecture is current when the project was using .NET 3.5 but has not yet been
+                  reviewed for .NET 4.0
+            NOTE: DO not use for REST endpoints.
+            History: I forget why we actually needed to use this. These days we don't use the 'multiple
+                     address' model anymore - ... i.e. it's mainly for situations where you have the same
+            code running under different domains. We don't (currently) use this is the newer projects
+            like CommerceDatabase webservices where we have all the WCF endpoints with really
+            fine-grained control using the global.asax replacement.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Operations.SharePointMagic">
+            <summary>
+            Sometimes we have to support Microsoft SharePoint. This collection of methods is designed to
+            help make that process more bearable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.SharePointMagic.SafeString(System.Object)">
+            <summary>
+            Takes a SharePoint object and turns it into a string. Also strips away any HTML that
+            might be associated there, since the Sharepoint formatting contains all manner of Junk.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.SharePointMagic.SiteExists(Microsoft.SharePoint.Client.ClientContext,System.String)">
+            <summary>
+            Determines (properly, using object model) whether
+            </summary>
+            <param name="context">
+            The client context should already be a connection to the expected root parent.
+            </param>
+            <param name="siteUrl"></param>
+            <param name="expectedChildWebUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Operations.SharePointMagic.SiteExistsSlowVersion(System.String,System.Net.ICredentials)">
+            <summary>
+            This variant uses http request. Don't use because very inefficient - it downloads the
+            entire repsonse across network.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.SpreadsheetMagic">
+            <summary>
+            Use to insert safe types into the spreadsheet when using EPPLUS (OpenOfficeXml)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.SpreadsheetMagic.DateValue(System.Object)">
+            <summary>
+            TODO: This needs some serious work ...
+            </summary>
+            <param name="possibleDateInput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Operations.SpreadsheetMagic.GetPossibleDate(System.Object,System.String)">
+            <summary>
+            Uses a variety of date formatting options to get the date. WHY? Because In some
+            situations, user may change the formatting of the spreadsheet :( The best is always where
+            an OADate is used, however this isn't always available so the date value may need to be
+            read in some other fashion. This attempts to cover most situations.
+            </summary>
+            <param name="otherExpectedFormat">
+            e.g. 'MM/dd/yy' or 'MM/dd/yyyy' or whatever you're expecting the string value to be
+            formatted as.
+            </param>
+        </member>
+        <member name="T:Microsoft.Operations.StringCache">
+            <summary>
+            Object which can help store a simple string value in the HttpRuntime cache (note: has a
+            dependency on System.Web assembly)
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.StringCache.Read(System.String)">
+            <summary>
+            Obtains a string value from the cache &gt; if it exists and is valid. Not being there
+            doesn't mean it wasn't set ... it may have already expired.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.StringCache.Write(System.String,System.String)">
+            <summary>
+            Places a nominated key/value pair into the cache, with no set expiry.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.StringCache.Write(System.String,System.String,System.Double)">
+            <summary>
+            Caches an object, with a specific duration in Seconds. If you don't want the object to
+            expire, set an expiry of Zero
+            </summary>
+        </member>
+        <member name="T:Microsoft.Operations.ServiceBaseExtensions">
+            <summary>
+            Common class for handling everything related to Console+Service hybrid mode.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Operations.ServiceBaseExtensions.Run(System.ServiceProcess.ServiceBase[],System.String[])">
+             <summary>
+             Runs a given collection of services and hosts them in either Console Application or
+             Windows Service, depending on how the application is executed (in interactive mode or not).
+            
+             The output type of the application must be set to Console: Project properties -&gt;
+             Output type: Console Application.
+            
+             create references to:
+             1. System.Configuration.Install
+             2. System.Management
+             3. System.ServiceProcess
+             4. The core program which contains the extension for ServiceBase.
+            
+             copy from an existing Windows Service:
+            
+             Project Installer.cs Service1.cs
+            
+             modify:
+            
+             1. Program.cs, to include stuff from Main function
+             2. Namespace, from the one copied, to reflect the current. NOTE: Search ALL files which
+                were copied.
+             3. Modify the designer to change the service name (in TWO Places)
+            
+             Code Credits for idea:
+             ref: http://stackoverflow.com/questions/125964/easier-way-to-start-debugging-a-windows-service-in-c-sharp
+             ref: http://einaregilsson.com/run-windows-service-as-a-console-program/
+             ref: http://pastebin.com/F0fhhG2R
+            
+             NOTE: During debugging sessions you may see a few orphaned 'conhost.exe' floating around
+                   (found on all OS's from Windows 7 to 10). Tests show that these don't appear when
+             running as a service.
+             </summary>
+             <param name="servicesToRun">Array of services to run.</param>
+             <param name="args">Arguments to be passed to the services (for interactive console)</param>
+        </member>
+        <member name="M:Microsoft.Operations.ServiceBaseExtensions.CallServiceBaseMethod(System.Collections.Generic.IEnumerable{System.ServiceProcess.ServiceBase},System.String,System.Object[],System.String)">
+            <summary>
+            Invokes the internal method for the requested service, using reflection.
+            </summary>
+        </member>
+        <member name="T:AzureAudit">
+            <summary>
+            One in a series of 'Audit' items which are permanent records of semi-important actions.
+            </summary>
+        </member>
+        <member name="M:AzureAudit.#ctor">
+            <summary>
+            An 'Audit' object is extended information about an action or data that allows us to trace
+            important activity. These entries get retained indefinitely (retention subject to regular
+            review). Similar to logging but more 'permanent'. These objects will be used for reporting.
+            </summary>
+        </member>
+        <member name="M:AzureAudit.TimestampIncomingCommunication(Microsoft.Exchange.WebServices.Data.EmailMessage,System.String,System.String,System.String)">
+            <summary>
+            Full 'write entry' which accepts arguments.
+            NOTE: Be sure to have loaded ALL THE PROPERTIES of the email object before they get accessed,
+                  otherwise a null reference exception may occur.
+            </summary>
+        </member>
+        <member name="T:AzureLogger">
+            <summary>
+            Common object for Logging information direct to cloud storage, in the 'cboservicelogs' storage in
+            a really easy-to-use manner. The Azure Table entity structure is optimized for deleting old logs,
+            and casual veiwing.
+            </summary>
+            <example>AzureLogger Log = new AzureLogger(); Log.WriteEntry("blah")</example>
+            <todo>Needs Async calling ... https://msdn.microsoft.com/en-us/library/azure/dn435331.aspx http://blog.stephencleary.com/2012/02/async-and-await.html</todo>
+        </member>
+        <member name="M:AzureLogger.#ctor">
+            <summary>
+            Create new component for easy reference to your Azure objects. It will use the name for the
+            Partition Key in the Azure table. Recommend creating only once when program starts, then
+            re-using. As far as we know, the object does not keep connections open, that sort of thing.
+            </summary>
+        </member>
+        <member name="M:AzureLogger.WriteLine(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Writes supplied text to the Azure Tables log. All the other attributes of the entry are
+            discovered when the 'AzureLogger' object is first created. Due to using the optional
+            parameters for determining caller information; we have sacrified the ability to use
+            arguments/parameters - the two constructs are incompatible with each other.
+            http://stackoverflow.com/questions/14505573/optional-parameters-together-with-an-array-of-parameters
+            Also chose not to walk the stack, since the 'callerinfo' values have virtually no performance
+            penalty. http://blog.slaks.net/2011/10/caller-info-attributes-vs-stack-walking.html
+            </summary>
+            <remarks>
+            It is possible to override the default values, e.g. if you wish to supply the method name (or
+            something custom)
+            </remarks>
+        </member>
+        <member name="T:AzureStorageAccount">
+            <summary>
+            Common object for accessing cloud storage data in the CBO subscription. Contains shortcuts which
+            makes it easier to manage objects. Handles one table and one queue at a time
+            </summary>
+            <example>
+            AzureStorageAccount Azure = new AzureStorageAccount("cboservicelogs"); Azure.LoadQueue("Stuff"); Azure.Queue.AddMessage(CloudQueueMessageExtensions.Serialize(s));
+            </example>
+        </member>
+        <member name="M:AzureStorageAccount.#ctor(System.String)">
+            <summary>
+            Create new component for easy reference to your Azure objcts
+            </summary>
+            <param name="container">Name of the storage account you want to connect to</param>
+        </member>
+        <member name="M:AzureStorageAccount.#ctor(System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="container"></param>
+            <param name="tableName">
+            Optionally load the table name direct from the constructor (as a shortcut ... one less line
+            of code if you're only working with one table)
+            </param>
+        </member>
+        <member name="P:AzureStorageAccount.Queue">
+            <summary>
+            Generic queue
+            </summary>
+        </member>
+        <member name="P:AzureStorageAccount.Table">
+            <summary>
+            The table object which was previously loaded.
+            </summary>
+        </member>
+        <member name="P:AzureStorageAccount.TableClient">
+            <summary>
+            Reference to the client object created when a table was loaded.
+            </summary>
+        </member>
+        <member name="P:AzureStorageAccount.TableContext">
+            <summary>
+            Use this endpoint to do unstructured queries.
+            </summary>
+            <example>
+            var query = from entity in AzureScoringData.TableContext.CreateQuery ABOScore
+            ("AdvertisingBusinessOperations") where entity.WebsiteIsModified.Equals(true) select entity;
+            </example>
+        </member>
+        <member name="T:DateMagic">
+            <summary>
+            Variety of date-based functions which may be useful when working with Date values.
+            </summary>
+        </member>
+        <member name="M:DateMagic.BusinessDaysBetween(System.DateTime,System.DateTime,System.Collections.Generic.List{System.DateTime})">
+            <summary>
+            Calculates number of business days, taking into account:
+            - weekends (Saturdays and Sundays)
+            - bank holidays in the middle of the week
+            </summary>
+            <param name="firstDay">First day in the time interval</param>
+            <param name="lastDay">Last day in the time interval</param>
+            <param name="knownHolidays">List of known holidays which aren't business days (optional)</param>
+            <returns>Number of business days during the 'span'</returns>
+        </member>
+        <member name="M:DateMagic.DateOrDbNull(System.Nullable{System.DateTime})">
+            <summary>
+            SHORTHAND For use with translating DateTime? into values which can be used with database directly
+            </summary>
+        </member>
+        <member name="M:DateMagic.DifferenceAsDays(System.DateTime)">
+            <summary>
+            TODO: This is sloppy and needs work ! (i.e. work on the parameters and other options like pluralization).
+            </summary>
+            <remarks>Original usage/design was just in Microsoft.Operations.Alerts.Compliance</remarks>
+        </member>
+        <member name="M:DateMagic.FirstDayOfMonth(System.DateTime)">
+            <summary>
+            Shorthand for the first day of the month
+            </summary>
+        </member>
+        <member name="M:DateMagic.IsLastBusinessDayInMonth(System.DateTime)">
+            <summary>
+            This version supports Sat/Sun only.
+            </summary>
+        </member>
+        <member name="M:DateMagic.LastDayOfMonth(System.DateTime)">
+            <summary>
+            Determines the last day of the month Will work even with leap year dates.
+            </summary>
+        </member>
+        <member name="M:DateMagic.ToDateTimeNullable(System.Object)">
+            <summary>
+            Basic routine for reading a probably date value from some source. Fails silently will give
+            null returned. If you need sth more advanced, try other date conversion routines, this is
+            just a basic shortcut only
+            </summary>
+        </member>
+        <member name="M:DateMagic.ToLocalTime(System.DateTime,System.String)">
+            <summary>
+            Shorthand for getting date in local time, INCLUDING an allowance for daylight savings.
+            </summary>
+            <param name="zoneByName">
+            Named zone, e.g. "Eastern Standard Time" (new york), "Pacific Standard Time" (redmond),
+            "Tokyo Standard Time" or whatever applies
+            </param>
+        </member>
+        <member name="T:EmailMessageLauncher">
+            <summary>
+            Container which can be used for common email delivery. Centralized error catching, logging and
+            file-system transactions.
+            REQUIRES: File System Access to temp directory.
+            </summary>
+        </member>
+        <member name="F:EmailMessageLauncher.AttachmentComments">
+            <summary>
+            Comments which would accompany the file attachment, e.g. if it's used to save into a TFS work
+            item. Default is set, but can be overridden if necessary.
+            </summary>
+        </member>
+        <member name="F:EmailMessageLauncher.FileNameEmailPayload">
+            <summary>
+            Name of a temp file which gets created in local 'temp' folder. Automatic deletion if used
+            with the 'attach' method.
+            </summary>
+        </member>
+        <member name="F:EmailMessageLauncher.Logger">
+            <summary>
+            Azure-based logging!
+            </summary>
+        </member>
+        <member name="M:EmailMessageLauncher.#ctor(AzureLogger,Microsoft.Exchange.WebServices.Data.EmailMessage,System.String)">
+            <summary>
+            </summary>
+            <param name="log"></param>
+            <param name="msg">
+            Specifies an email to use (it should already be fully formed prior to loading)
+            </param>
+            <param name="fileNamePattern">A base name to use for the final file name e.g. 'email_tier2_invite.eml'</param>
+        </member>
+        <member name="M:EmailMessageLauncher.Dispose">
+            <summary>
+            CLEANUP! Note: if using this with a TFS workitem, only do this after the work item has been
+            saved, otherwise an error will occur.
+            </summary>
+        </member>
+        <member name="M:EmailMessageLauncher.IsReadyToSend">
+            <summary>
+            Basic validation on the email to see if it can be sent. Will set a value for 'ErrorMessage'
+            with a basic description.
+            </summary>
+        </member>
+        <member name="M:EmailMessageLauncher.SendWithAuditTrail(System.Boolean,System.Boolean)">
+            <summary>
+            Saves a file
+            </summary>
+        </member>
+        <member name="M:ExtensionMethods.BulkUploadData(System.Data.SqlClient.SqlConnection,System.Data.DataTable,System.String)">
+            <summary>
+            Shortcut for bulk upload into table which has the same column names/structure as the
+            datatable supplied. Only use this if you know the schemas are identical (typically
+            dynamically determined).
+            </summary>
+        </member>
+        <member name="M:ExtensionMethods.ExecuteNonQuery(System.Data.SqlClient.SqlConnection,System.String)">
+            <summary>
+            Generic one-liner for executing command against database
+            </summary>
+        </member>
+        <member name="M:ExtensionMethods.OpenConnectionToSqlServer(System.Data.SqlClient.SqlConnection,System.String,System.String)">
+            <summary>
+            Forces an open connection, using automatically constructed connection string (uses current
+            security context)
+            </summary>
+        </member>
+        <member name="M:ExtensionMethods.Deduplicate``1(System.Collections.Generic.List{``0})">
+            <summary>
+            h/t: http://stackoverflow.com/questions/47752/remove-duplicates-from-a-listt-in-c-sharp
+            </summary>
+        </member>
+        <member name="M:ExtensionMethods.Flatten(System.Collections.IEnumerable,System.String)">
+            <summary>
+            Credit: http://stackoverflow.com/users/404854/kbrimington
+            </summary>
+        </member>
+        <member name="M:ExtensionMethods.Flatten(System.Collections.IEnumerable,System.String,System.String,System.String)">
+            <summary>
+            Returns value used for TFS MultiSelect control (Codeplex version). [Value1];[Value2]
+            </summary>
+        </member>
+        <member name="T:AdopsIssue">
+            <summary>
+            This item is used for fetching SharePoint submissions. The 'object' is used specifically because
+            the data types in SharePoint are nebulous.
+            </summary>
+        </member>
+        <member name="T:AdopsSummary">
+            <summary>
+            This item is used for fetching SharePoint submissions. The 'object' is used specifically because
+            the data types in SharePoint are nebulous.
+            </summary>
+        </member>
+        <member name="F:AdopsSummary.Status">
+            <summary>
+            Also known as 'Color' or color Indicator. i.e. Green, Red, Yellow.
+            </summary>
+        </member>
+        <member name="M:CloudQueueExtensions.Dequeue``1(Microsoft.WindowsAzure.Storage.Queue.CloudQueue)">
+            <summary>
+            Returns the type requested, and then automatically deletes it from the queue. Use this only
+            if you trust your code to hang onto the message for as long as it needs it. Bypasses the
+            silly 30-second invisibility, guarantees that no other clients will read the same message.
+            </summary>
+        </member>
+        <member name="M:CloudQueueExtensions.Dequeue(Microsoft.WindowsAzure.Storage.Queue.CloudQueue)">
+            <summary>
+            Use this signature for any polymorphic objects !
+            </summary>
+        </member>
+        <member name="T:CloudQueueMessageExtensions">
+            <summary>
+            var myobject = new MyObject(); _queue.AddMessage(
+            CloudQueueMessageExtensions.Serialize(myobject)); var myobject = _queue.GetMessage().Deserialize
+            <![CDATA[<MyObject>()]]> ;
+            </summary>
+        </member>
+        <member name="M:CloudQueueMessageExtensions.Deserialize(Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage)">
+            <summary>
+            Polymorphic
+            </summary>
+        </member>
+        <member name="M:CloudQueueMessageExtensions.Deserialize``1(Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage)">
+            <summary>
+            Explicit type ...
+            </summary>
+        </member>
+        <member name="M:CloudTableExtensions.Delete(Microsoft.WindowsAzure.Storage.Table.CloudTable,Microsoft.WindowsAzure.Storage.Table.TableEntity)">
+            <summary>
+            Deletes a cloud object, typically requires the original object, but will work without it.
+            </summary>
+        </member>
+        <member name="M:CloudTableExtensions.ForceUpdate(Microsoft.WindowsAzure.Storage.Table.CloudTable,Microsoft.WindowsAzure.Storage.Table.ITableEntity)">
+            <summary>
+            Uses the partition key / row key to update the target item. If it doesn't already exist, it
+            will be created! (part of the service, no extra charge)
+            </summary>
+        </member>
+        <member name="M:CloudTableExtensions.Write``1(Microsoft.WindowsAzure.Storage.Table.CloudTable,``0)">
+            <summary>
+            Shorthand for inserting the object ... ? Must have partitionkey, rowkey, etc.
+            </summary>
+        </member>
+        <member name="M:ExtendDictionary.AddOrUpdate(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            This method exists sort of in the .NET 4.0 full library ... part of the 'ConcurrentDictionary'
+            </summary>
+            <param name="coll">The existing string dictionary that you wish to update</param>
+            <param name="key">Standard key name, which is expected to be found in dictionary</param>
+            <param name="value">Value which shall be stored (or updated)</param>
+        </member>
+        <member name="M:ExtendDictionary.AddOrUpdate(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="coll"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="forceOverwrite">
+            decide what to do with the existing value if it is present (leave intact = false) or
+            (overwrite = true).
+            </param>
+        </member>
+        <member name="M:ExtendDictionary.MergeWith(System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes an additional collection and updates the original one. This version overwrites the
+            original with the additional content, if the key is the same.
+            </summary>
+        </member>
+        <member name="M:ExtendDictionary.ToStringList(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes a simple string dictionary object and turns the VALUES (not the keys) into a list of Strings.
+            </summary>
+        </member>
+        <member name="M:Extensions.AddInputParameter(System.Data.SqlClient.SqlCommand,System.String,System.Object,System.Data.SqlDbType)">
+            <summary>
+            Specify the value that you want to use as input to the stored procedure (typically for an
+            input parameter). This full definition will/should be the one which is used the most -
+            BOOLEAN and INTEGER types
+            </summary>
+            <param name="parameterName">
+            Name of the parameter as known to the stored procedure. This typically has a "@" in front of it.
+            </param>
+            <param name="value">
+            Supply the value you wish to inject. Note: SQL Server may not accept null values.
+            </param>
+            <param name="dataType">
+            The data type of the parameter, as specified in the stored procedure. For use with Input
+            parameters, this is typically required.
+            </param>
+            <param name="value">Null can be passed as a value (accepted by Sql Server).</param>
+            <remarks>
+            For use with Input parameters, this is typically required. For use with Output parameters,
+            the value is usually retrieved after the command is executed.
+            </remarks>
+        </member>
+        <member name="M:Extensions.AddInputParameter(System.Data.SqlClient.SqlCommand,System.String,System.Object,System.Data.SqlDbType,System.Int32)">
+            <summary>
+            Specifying the size for types of CHAR and VARCHAR is required.
+            </summary>
+            <param name="size">The length of the character.</param>
+        </member>
+        <member name="M:Extensions.AddInputParameter(System.Data.SqlClient.SqlCommand,System.String,System.Object,System.Data.SqlDbType,System.Byte,System.Byte)">
+            <summary>
+            Specifying details for DECIMAL data type is required. In this case, the 'length' is
+            automatically handled.
+            </summary>
+            <param name="precision">Total length of the decimal number, including decimal places</param>
+            <param name="scale">Number of decimal places (i.e. after the ".")</param>
+        </member>
+        <member name="M:Extensions.AddOutputParameter(System.Data.SqlClient.SqlCommand,System.String,System.Data.SqlDbType)">
+            <summary>
+            Default output parameter, for INTEGER and BOOLEAN types (where the size is already defined)
+            </summary>
+        </member>
+        <member name="M:Extensions.AddOutputParameter(System.Data.SqlClient.SqlCommand,System.String,System.Data.SqlDbType,System.Int32)">
+            <summary>
+            Adds an OUTPUT PARAMETER
+            </summary>
+        </member>
+        <member name="M:Extensions.AddOutputParameter(System.Data.SqlClient.SqlCommand,System.String,System.Data.SqlDbType,System.Byte,System.Byte)">
+            <summary>
+            For decimal data types, precision (and scale) are required (replaces the size definition)
+            </summary>
+        </member>
+        <member name="M:Extensions.GetInteger(System.Data.SqlClient.SqlCommand,System.String)">
+            <summary>
+            Attempts to return a integer-formatted variable from the SQL Server stored proc output
+            variable. If it can't do it, then it returns a zero. This is effectively an easy catch-all
+            for null values.
+            </summary>
+        </member>
+        <member name="M:Extensions.GetString(System.Data.SqlClient.SqlCommand,System.String)">
+            <summary>
+            Handy wrapper which just spits out a string version of whatever the parameter value was.
+            </summary>
+        </member>
+        <member name="M:Extensions.AddParameter(System.Data.SqlClient.SqlCommand,System.Data.ParameterDirection,System.String,System.Data.SqlDbType,System.Object,System.Int32,System.Byte,System.Byte)">
+            <summary>
+            Adds a parameter to the command object, using given parameters from the extension methods.
+            Note the conditional logic, this is meant to handle most scenarios (but not necessarily all).
+            Some elements are not required depending on the combination of all the other data.
+            </summary>
+        </member>
+        <member name="M:Extensions.ToExcelColumnName(System.Int32)">
+            <summary>
+            Useful for spreadsheets.
+            Credit: Stackoverflow Internet Code
+            </summary>
+        </member>
+        <member name="M:Extensions.GetFiles(System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Returns file names from given folder that comply to given filters
+            </summary>
+            <param name="SourceFolder">Folder with files to retrieve</param>
+            <param name="Filter">Multiple file filters separated by | character</param>
+            <param name="searchOption">File.IO.SearchOption, could be AllDirectories or TopDirectoryOnly</param>
+            <returns>
+            Array of FileInfo objects that presents collection of file names that meet given filter
+            </returns>
+        </member>
+        <member name="T:Logging">
+            <summary>
+            Cloud-based logging components
+            </summary>
+        </member>
+        <member name="M:Logging.WriteEntry(Microsoft.WindowsAzure.Storage.Table.CloudTable,System.String)">
+            <summary>
+            Shortcut, will write as 'Information' message to the specified log.
+            </summary>
+        </member>
+        <member name="M:Logging.WriteEntry(Microsoft.WindowsAzure.Storage.Table.CloudTable,System.String,System.Object[])">
+            <summary>
+            Shortcut, will write as 'Information' message to the specified log, allows parameters.
+            </summary>
+        </member>
+        <member name="M:Logging.WriteEntry(Microsoft.WindowsAzure.Storage.Table.CloudTable,System.Diagnostics.EventLogEntryType,System.String,System.Object[])">
+            <summary>
+            Full 'write entry' which accepts arguments.
+            Note: Partition key will be the calling assembly,
+            </summary>
+        </member>
+        <member name="T:ABOScore">
+            <summary>
+            A scoring entity (for a specific ABO sub-group), used for transferring values to and from the
+            Azure scoring functionality.
+            </summary>
+        </member>
+        <member name="M:ABOScore.#ctor">
+            <summary>
+            New ABO S
+            </summary>
+        </member>
+        <member name="T:AuditFile">
+            <summary>
+            Basic detail of an Email which was sent or received by the system.
+            </summary>
+        </member>
+        <member name="M:AuditFile.#ctor">
+            <summary>
+            This parameterless constructor needs to stay - requirement of cloud object.
+            </summary>
+        </member>
+        <member name="P:AuditFile.ArchiveAction">
+            <summary>
+            The action applied TO the email object AFTER it was used. i.e. this gives an indication of
+            where the actual data might be kept, but is agnostic of any other activity.
+            - 'MovedToSpecificFolder'
+            - 'RetainedCopyInSentItems'
+            - 'MovedToRecycleBin'
+            - 'HardDeleted'
+            - 'NoCopyKept'
+            </summary>
+        </member>
+        <member name="P:AuditFile.AuditType">
+            <summary>
+            What is the nature of this audit entry? i.e. to help reporting and filtering
+            - 'AttachmentReceipt'
+            </summary>
+        </member>
+        <member name="P:AuditFile.From">
+            <summary>
+            Email address (SMTP) of who the email object was from. This is NOT related to the internal
+            content of the email.
+            </summary>
+        </member>
+        <member name="P:AuditFile.Headers">
+            <summary>
+            Record of the primary internet headers from the original message, the preservation of which
+            may aid troubleshooting and security diagnosis. [ This is LOW VALUE information and we may
+            consider dropping this data in future versions ]
+            </summary>
+        </member>
+        <member name="P:AuditFile.Mailbox">
+            <summary>
+            The alias-based email address denoting the mailbox which handled this email.
+            </summary>
+        </member>
+        <member name="T:AuditEmail">
+            <summary>
+            Basic detail of an Email which was sent or received by the system. This object is one in a series
+            of 'Audit' items which are permanent records of semi-important actions. They are all stored
+            inside the cboservicelogs 'audit' table.
+            </summary>
+        </member>
+        <member name="M:AuditEmail.#ctor">
+            <summary>
+            This parameterless constructor needs to stay - requirement of cloud object.
+            </summary>
+        </member>
+        <member name="P:AuditEmail.ArchiveAction">
+            <summary>
+            The action applied TO the email object AFTER it was used. i.e. this gives an indication of
+            where the actual data might be kept, but is agnostic of any other activity.
+            - 'MovedToSpecificFolder'
+            - 'RetainedCopyInSentItems'
+            - 'MovedToRecycleBin'
+            - 'HardDeleted'
+            - 'NoCopyKept'
+            </summary>
+        </member>
+        <member name="P:AuditEmail.AuditType">
+            <summary>
+            What is the nature of this audit entry? What event is it describing? i.e. to help reporting
+            and filtering
+            - 'EmailDelivery' : For record of outgoing emails, where we need a record
+            - 'EmailReceived' : For recording incoming items (and subsequent processing)
+            </summary>
+        </member>
+        <member name="P:AuditEmail.From">
+            <summary>
+            Email address (SMTP) of who the email object was from. This is NOT necessarily related to the
+            internal content of the email.
+            </summary>
+        </member>
+        <member name="P:AuditEmail.InternetHeaders">
+            <summary>
+            Record of the primary internet headers from the original message, the preservation of which
+            may aid troubleshooting and security diagnosis. [ This is LOW VALUE information and we may
+            consider dropping this data in future versions ]
+            </summary>
+        </member>
+        <member name="P:AuditEmail.MachineName">
+            <summary>
+            From what hosting machine, is the entry from?
+            </summary>
+        </member>
+        <member name="P:AuditEmail.Mailbox">
+            <summary>
+            The alias-based email address denoting the mailbox which handled this email.
+            </summary>
+        </member>
+        <member name="P:AuditEmail.SecurityContext">
+            <summary>
+            Name of the executing identity (i.e. user name) of the MAIN thread of the running program.
+            </summary>
+        </member>
+        <member name="P:AuditEmail.Subject">
+            <summary>
+            The title on the original email object (may also be left blank). This is to help
+            identify/match any archived objects in the mailbox, if required.
+            </summary>
+        </member>
+        <member name="P:AuditEmail.WorkflowStage">
+            <summary>
+            Free text - the name of the function which handled this particular item. Use the method (or
+            class) name from code as a handy default if a specific namer is not available. If applicable,
+            separate multiple stages with full stops so that grouping is clear, e.g. for the first part
+            of processing, "WorkflowX.Part1" etc.
+            </summary>
+        </member>
+        <member name="T:LogDetail">
+            <summary>
+            2016 version - please use this for logging all application activity. PartitionKey = "number of
+            days until x" bucket, for day-based logging (and for easier deletion) RowKey = Logtail pattern
+            using Ticks, which enables easy TOP-x based queries (ref: https://azure.microsoft.com/en-us/documentation/articles/storage-table-design-guide/#table-design-patterns)
+            </summary>
+        </member>
+        <member name="M:LogDetail.#ctor">
+            <summary>
+            This parameterless constructor needs to stay - requirement of cloud object.
+            </summary>
+        </member>
+        <member name="M:LogDetail.#ctor(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Create a new log entry to jam free-form information. Similar to local EventLog, but better
+            because it's cloud-based. Stored in 'ApplicationChatter' table, suitable for recording any event.
+            </summary>
+            <param name="applicationName">
+            Typically the namespace of the service e.g. Microsoft.Operations.WHT.Service, but may also be
+            abbreviated form.
+            </param>
+            <param name="originalCallingMethodName">
+            Optional, describes where the logger where in the program this is occuring (for identification)
+            </param>
+            <param name="codeFile">
+            Name of the (compile file) where the logging item gets called, for easy later troubleshooting.
+            </param>
+            <param name="lineNumber">(if known) the line number of the original caller</param>
+        </member>
+        <member name="P:LogDetail.ApplicationName">
+            <summary>
+            Name of the application or service - typically the primary namespace or even the assembly
+            name. Doesn't matter so long as it is Unique, and try not to use ACRONYMS (that's just lazy)
+            </summary>
+        </member>
+        <member name="P:LogDetail.CallerFilePath">
+            <summary>
+            TO ASSIST WITH DEBUGGING.
+            </summary>
+        </member>
+        <member name="P:LogDetail.EventData">
+            <summary>
+            Main text of the event/message, etc. This is designed to be free-form text however... there
+            is no practical limit to the size of the object so it's possible to store any value here
+            (even a serialized object if you really want it).
+            </summary>
+        </member>
+        <member name="P:LogDetail.MachineName">
+            <summary>
+            From what hosting machine, is the entry from? (makes error tracing a lot easier).
+            </summary>
+        </member>
+        <member name="P:LogDetail.SecurityContext">
+            <summary>
+            Name of the executing identity (i.e. domain + user name) of the MAIN thread of the running
+            program. In conjunction with all the other information, this helps identify running processes
+            and troubleshoot any security context issues.
+            </summary>
+        </member>
+        <member name="T:LogEntry">
+            <summary>
+            Same as an event log item, but in a cloud table.
+            *** THIS IS THE OLD 2014-2015 version WHICH WILL BE PHASED OUT OVER TIME (use the 2016 version
+            instead: 'LogDetail')
+            </summary>
+        </member>
+        <member name="M:LogEntry.#ctor">
+            <summary>
+            This parameterless constructor needs to stay - requirement of cloud object.
+            </summary>
+        </member>
+        <member name="P:LogEntry.EventData">
+            <summary>
+            Main text of the event/message, etc.
+            </summary>
+        </member>
+        <member name="P:LogEntry.Level">
+            <summary>
+            Information, Warning, Error or Critical
+            </summary>
+        </member>
+        <member name="P:LogEntry.MachineName">
+            <summary>
+            From what hosting machine, is the entry from?
+            </summary>
+        </member>
+        <member name="P:LogEntry.SecurityContext">
+            <summary>
+            Name of the executing identity (i.e. user name) of the MAIN thread of the running program.
+            </summary>
+        </member>
+        <member name="T:WorkItemSystemFields">
+            <summary>
+            Contains just the system fields common to a TFS workitem.
+            </summary>
+        </member>
+        <member name="F:WorkItemSystemFields.ChangedDate">
+            <summary>
+            Always has a value &gt; when the workitem was last saved
+            </summary>
+        </member>
+        <member name="F:WorkItemSystemFields.History">
+            <summary>
+            History value (text) which would get written
+            </summary>
+        </member>
+        <member name="F:WorkItemSystemFields.State">
+            <summary>
+            System.State, which is the primary driver of all workflow activity
+            </summary>
+        </member>
+        <member name="F:WorkItemSystemFields.Uri">
+            <summary>
+            Location of the Web URL for this particular invoice record i.e. specifically via Team System
+            Web Access
+            </summary>
+        </member>
+        <member name="T:Optimize">
+            <summary>
+            Optimization library for BIOS Operations.
+            </summary>
+        </member>
+        <member name="M:Optimize.MinifyHtml(System.String,System.String@,System.Boolean)">
+            <summary>
+            Wrapper around the library known as 'WebMarkupMin' (a codeplex project, see Documentation
+            folder for license). Takes a HTML stream and reduces it, but everything still works. Use this
+            if you want to optimize and have no need for human-readability (e.g. html emails). Allows you
+            to KEEP all HTML comments inside the HTML you're working with (for readability and sanity),
+            safe in the knowledge that it won't be exposed later. Other internal options do exist if you
+            need more flexibility. Please note: your mileage may vary: in some rare cases this library
+            will actually make the HTML larger &gt; make sure you run some comparison tests.
+            WARNING: May sometimes add a 'mailto:'
+            </summary>
+            <param name="htmlInput">your candidate input stream</param>
+            <param name="compressionSummary">
+            some statistics about the compression which occured (mostly for developer information)
+            </param>
+            <param name="includeContentInStatistics">
+            if you need to see the final result, this flag will force it to be included in the statistics
+            information (may save you some time)
+            </param>
+            <returns>HTML string without whitespace</returns>
+        </member>
+        <member name="M:Optimize.SafeString(System.Object,System.Boolean)">
+            <summary>
+            Use this for easy handling on all sorts of data which we expect to be string but may be all
+            manner of null objects.
+            </summary>
+            <param name="input">The object you suspect has some data in it</param>
+            <param name="stripHtml">Optionally force out any HTML tags, if there was a string value</param>
+        </member>
+        <member name="T:RAR">
+            <summary>
+            Handle RAR compressed files, using 3rd party library. (our wrapper)
+            </summary>
+        </member>
+        <member name="M:RAR.Unrar(System.String,System.String,System.Boolean)">
+            <summary>
+            Decompress an archived file, returning the final output as a list, with the option to delete
+            original file.
+            NOTE: Because this library handles multiple formats, we may make the naming more generic later.
+            </summary>
+        </member>
+        <member name="M:SEVENZIP.UnSeven(System.String,System.String,System.Boolean)">
+            <summary>
+            Decompress an archived file, returning the final output as a list, with the option to delete
+            original file. IMPORTANT NOTE: Requires the 7s.dll file (included is the x86 version) to be
+            accessible on target machine, otherwise fails with error. I tried, but I couldn't get this
+            working 100% because I can't create a one-size-fits-all package. Will do manually for now. https://github.com/luuksommers/SevenZipSharp.Interop/
+            </summary>
+        </member>
+        <member name="T:StepCompletionParameter">
+            <summary>
+            This class is typically used with any background worker threads, to report progress or result
+            from a working thread. example of usage: StepCompletionParameter param = (StepCompletionParameter)e.Result;
+            </summary>
+        </member>
+        <member name="T:ZIP">
+            <summary>
+            Common Class for handle ZIP operations.
+            </summary>
+        </member>
+        <member name="M:ZIP.CreateZipFile(System.String,System.String)">
+            <summary>
+            Takes a file and compresses it.
+            </summary>
+            <param name="finalfile">name of the zip which</param>
+            <param name="sourcefile">include directory</param>
+        </member>
+        <member name="M:ZIP.Unzip(System.String,System.String,System.Boolean)">
+            <summary>
+            To the same directory as the zip file
+            </summary>
+        </member>
+        <member name="T:ExtensionMethodsEmail">
+            <summary>
+            Anything related to efficiently processing Exchange Web Services (EWS) emails (all common routines)
+            </summary>
+        </member>
+        <member name="M:ExtensionMethodsEmail.IsJunkMail(Microsoft.Exchange.WebServices.Data.EmailMessage,System.String@,System.Int32@)">
+             <summary>
+             This function is intended to be common to all routines which regularly look at Service
+             Account Mailbox contents. It provides a COARSE assessment of whether the email message is
+             'JUNK' or not, based on predefined rules, most of the time it is deemed junk because the item
+             is inherently *** NON-ACTIONABLE by the service account ***. A text summary will be provided
+             on the assessment, but no other detail.
+            
+             The following general assumptions are made (this may help you determine if you wish to use it):
+             1. Anything from a non-microsoft address is automatically junk, for security reasons.
+             2. Any 'auto-reply' is junk - i.e. completely non actionable by a service account.
+             3. Any broad distribution mail or notification item is junk.
+             </summary>
+             <param name="email">The EmailMessage object that needs to be analysed.</param>
+             <param name="explanationOfDecisionForLoggingPurposes">
+             Text which should be used for logging information about the determination. NOTE: the address
+             is NOT included as part of this output.
+             </param>
+             <param name="confidenceLevel">
+             Value between 0 and 100, relates to the clarity of the initial decision - could be used for
+             making decisions about whether to HardDelete or not, depending on your audit requirements.
+             </param>
+        </member>
+    </members>
+</doc>

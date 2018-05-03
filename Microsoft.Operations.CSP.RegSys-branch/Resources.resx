@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activate_Annual" xml:space="preserve">
+    <value>Thank you for purchasing an annual Advanced Support for Partners (ASfP) subscription</value>
+  </data>
+  <data name="Activate_Banner" xml:space="preserve">
+    <value>Microsoft Advanced Support for Partners Activation Details</value>
+  </data>
+  <data name="Activate_Email_Invoice" xml:space="preserve">
+    <value>You will receive your ASfP invoice by email (at {0}) for the amount of {1} USD approximately 15 days after your ASfP service start date. </value>
+  </data>
+  <data name="Activate_Email_Invoice2" xml:space="preserve">
+    <value>{0} will receive your ASfP invoice by email (at {1}) for the amount of {2} USD approximately 15 days after your ASfP service start date. </value>
+  </data>
+  <data name="Activate_Invoicing_Date" xml:space="preserve">
+    <value>Please be advised, standard invoicing dates are on the 15th and 27th of the month.  Your invoicing date is determined by the date we have all required information to process your transaction.  If we have all required information prior to the 14th of the month, the invoicing date will be on the 15th of the month.  Otherwise, it will be the 27th of the month. Please be aware that this date cannot be changed once it is updated in Microsoft’s systems.</value>
+  </data>
+  <data name="Activate_ManyThanks" xml:space="preserve">
+    <value>Many thanks,</value>
+  </data>
+  <data name="Activate_Monthly" xml:space="preserve">
+    <value>Thank you for purchasing a monthly Advanced Support for Partners (ASfP) subscription</value>
+  </data>
+  <data name="Activate_PA_Active" xml:space="preserve">
+    <value>Your ASfP Transition Package will then be active for 12-months.</value>
+  </data>
+  <data name="Activate_PA_Description" xml:space="preserve">
+    <value>With this package, you gain access to great, new cloud benefits that come with ASfP.  Plus, you will continue to receive the benefits we heard were most valued by you under the Dynamics Partner Advantage plans – including performance-based on-premises support incidents, MPN advisory hours and access to the Microsoft Dynamics training packs.</value>
+  </data>
+  <data name="Activate_PA_SAM_Description" xml:space="preserve">
+    <value>We have already started to activate your subscription in our systems and plan to finalize this by the week of {0}. You will receive an email confirming the completed activation from us. Once your subscription is active, {1}, your ASfP Services Account Manager (SAM), will also contact you to schedule a program overview session and share further details.</value>
+  </data>
+  <data name="Activate_PAIntro_1" xml:space="preserve">
+    <value>Thank you for purchasing the Advanced Support for Partners (ASfP) PA Transition Package.</value>
+  </data>
+  <data name="Activate_PAIntro_2" xml:space="preserve">
+    <value>Thank you for purchasing the Advanced Support for Partners (ASfP) PA Transition Package and {0}.</value>
+  </data>
+  <data name="Activate_PAIntro_3" xml:space="preserve">
+    <value>Thank you for purchasing the Advanced Support for Partners (ASfP) PA Transition Package, {0}, and {1}.</value>
+  </data>
+  <data name="Activate_PAIntro_4" xml:space="preserve">
+    <value>Thank you for purchasing the Advanced Support for Partners (ASfP) PA Transition Package, {0}, {1}, and {2}.</value>
+  </data>
+  <data name="Activate_PAIntro_5" xml:space="preserve">
+    <value>Thank you for purchasing the Advanced Support for Partners (ASfP) PA Transition Package, {0}, {1}, {2}, and {3}.</value>
+  </data>
+  <data name="Activate_Partnership" xml:space="preserve">
+    <value>We are excited to welcome you as an ASfP Partner and are looking forward to our continued partnership!</value>
+  </data>
+  <data name="Activate_PleaseSend" xml:space="preserve">
+    <value>To help expedite the onboarding process, please send us the following information:</value>
+  </data>
+  <data name="Activate_PrgmOverview" xml:space="preserve">
+    <value>Once your subscription is active, one of our ASfP Services Account Managers (SAM) will contact you to schedule a program overview session and share further details.</value>
+  </data>
+  <data name="Activate_SendBillContact" xml:space="preserve">
+    <value>The name and email details for your preferred billing contact person, if you would like us to send the invoice to someone in your organization other than you.</value>
+  </data>
+  <data name="Activate_SendBillContact_Blue" xml:space="preserve">
+    <value>Please send us the name and email details for your preferred billing contact person, if you would like us to send the invoice to someone in your organization other than you.</value>
+  </data>
+  <data name="Activate_SendVAT_Blue" xml:space="preserve">
+    <value>Please send us the VAT ID number you would like us to associate with your order within 3 business days, (by {0}), otherwise VAT will be added to your invoice.</value>
+  </data>
+  <data name="Activate_SendVAT" xml:space="preserve">
+    <value>The VAT ID number you would like us to associate with your order within 3 business days, (by {0}), otherwise VAT will be added to your invoice.</value>
+  </data>
+  <data name="Activate_StartActivation" xml:space="preserve">
+    <value>We have already started to activate ASfP for you in our systems and plan to finalize this by the week of {0}. You will receive an email confirming the completion of your activation.</value>
+  </data>
+  <data name="Activate_Sub_Items_1" xml:space="preserve">
+    <value>{0} and {1}.</value>
+  </data>
+  <data name="Activate_Sub_Items_2" xml:space="preserve">
+    <value>{0}, {1}, and {2}.</value>
+  </data>
+  <data name="Activate_Sub_Items_3" xml:space="preserve">
+    <value>{0}, {1}, {2}, and {3}.</value>
+  </data>
+  <data name="Activate_Sub_Items_4" xml:space="preserve">
+    <value>{0}, {1}, {2}, {3}, and {4}.</value>
+  </data>
+  <data name="Activate_Subject" xml:space="preserve">
+    <value>Activation of your Advanced Support for Partners benefits; {0}</value>
+  </data>
+  <data name="Activate_MeanTime" xml:space="preserve">
+    <value>In the meantime, if you have any questions or urgent cloud support requests please contact your Services Account Manager (SAM) or email &lt;a href='mailto:svcasfp@microsoft.com'&gt;svcasfp@microsoft.com&lt;/a&gt;.</value>
+  </data>
+  <data name="APGC" xml:space="preserve">
+    <value>Asia Pacific</value>
+  </data>
+  <data name="Banner" xml:space="preserve">
+    <value>Microsoft Advanced Support for Partners Confirmation</value>
+  </data>
+  <data name="Activate_Closing_Signature" xml:space="preserve">
+    <value>Global Operations Team&lt;br/&gt;Microsoft Advanced Support for Partners (ASfP)</value>
+  </data>
+  <data name="Dear" xml:space="preserve">
+    <value>Dear {0},</value>
+  </data>
+  <data name="EMEA" xml:space="preserve">
+    <value>Europe, Middle East, Africa</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="LATAM" xml:space="preserve">
+    <value>Latin America</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>North America</value>
+  </data>
+  <data name="Submit_NoPreferedLocationSpecified" xml:space="preserve">
+    <value> (no prefered location specified)</value>
+  </data>
+  <data name="Submit_NoSpecialInstructionsProvided" xml:space="preserve">
+    <value> (no special instructions provided)</value>
+  </data>
+  <data name="Submit_OrderDetails" xml:space="preserve">
+    <value>You will find your order details below:</value>
+  </data>
+  <data name="Submit_Sincerely" xml:space="preserve">
+    <value>Sincerely,</value>
+  </data>
+  <data name="Submit_SpecialInstructions" xml:space="preserve">
+    <value>Special Instructions:</value>
+  </data>
+  <data name="Submit_Closing_ThankYou" xml:space="preserve">
+    <value>Thank you for your continued partnership and support in delivering Microsoft technologies to our mutual customers.</value>
+  </data>
+  <data name="Submit_ClosingSignature" xml:space="preserve">
+    <value>Your Microsoft Advanced Support for Partners team</value>
+  </data>
+  <data name="Submit_Contact_ASfP" xml:space="preserve">
+    <value>A Microsoft representative will be contacting you within 72 hours (Business Hours: Monday to Friday 9am– 5pm Pacific Time Zone) to begin the subscription qualification process.   At that time, we will verify the details of your order and begin processing your request.</value>
+  </data>
+  <data name="Submit_Contact_PA" xml:space="preserve">
+    <value>A Microsoft representative will be contacting you within 72 hours (Business Hours: Monday to Friday 9am– 5pm Pacific Time Zone) to begin the subscription qualification process.   At that time, we will verify the details of your order and begin processing your request.</value>
+  </data>
+  <data name="Submit_ContactUs" xml:space="preserve">
+    <value>In the meantime, please feel free to reach out to Advanced Support for Partners at &lt;a href='mailto:svcasfp@microsoft.com'&gt;svcasfp@microsoft.com&lt;/a&gt; with any questions.</value>
+  </data>
+  <data name="Submit_PA_PromoCode" xml:space="preserve">
+    <value>ASfP PA Transition Package - One-Time Payment – Promocode: {0}</value>
+  </data>
+  <data name="Submit_PreferredSAM_Location" xml:space="preserve">
+    <value>Preferred Services Account Manager Location: </value>
+  </data>
+  <data name="Submit_ThankYou_ASfP" xml:space="preserve">
+    <value>Thank you for submitting an order request for Microsoft Advanced Support for Partners (ASfP)!</value>
+  </data>
+  <data name="Submit_ThankYou_PA" xml:space="preserve">
+    <value>Thank you for submitting an order request for Microsoft Advanced Support for Partners (ASfP) Transition Package!</value>
+  </data>
+  <data name="TrademarksURL" xml:space="preserve">
+    <value>https://www.microsoft.com/trademarks/</value>
+  </data>
+  <data name="Incident_Pack_1" xml:space="preserve">
+    <value>W67-00001 1-Pack On Premises Support Incident – USD 499 (local taxes apply)</value>
+  </data>
+  <data name="Incident_Pack_5" xml:space="preserve">
+    <value>W69-00001 5-Pack On Premises Support Incidents – USD 1,999 (local taxes apply)</value>
+  </data>
+  <data name="Cloud_Consult_1" xml:space="preserve">
+    <value>W74-00001 1 Cloud Consult Engagement – USD 2,000 (local taxes apply)</value>
+  </data>
+  <data name="SAM_Hours_20" xml:space="preserve">
+    <value>W73-00001 20 Hours of Services Account Management – USD 4,000 (local taxes apply)</value>
+  </data>
+  <data name="ASfP_Monthly" xml:space="preserve">
+    <value>W6M-00001 Advanced Support for Partners Monthly Subscription – Monthly Payment – USD 1,250 (local taxes apply)</value>
+  </data>
+  <data name="ASfP_Annual" xml:space="preserve">
+    <value>Advanced Support for Partners Annual Subscription – One-Time Payment – USD 15,000 (local taxes apply)</value>
+  </data>
+  <data name="ASfP_Emerging" xml:space="preserve">
+    <value>W6N-00002 Advanced Support for Partners Annual Subscription in Emerging Markets – One-Time Payment – USD 10,000 (local taxes apply)</value>
+  </data>
+  <data name="ASfP_Annual_Discount" xml:space="preserve">
+    <value>W6N-00001 Advanced Support for Partners Annual Subscription – One-Time Payment, 3% discount – USD 14,550 (local taxes apply)</value>
+  </data>
+  <data name="ASfP_PA_Transition" xml:space="preserve">
+    <value>AAA-13751 ASfP PA Transition Package - One-Time Payment </value>
+  </data>
+  <data name="No_SKU" xml:space="preserve">
+    <value>No items were selected</value>
+  </data>
+  <data name="Privacy_Link" xml:space="preserve">
+    <value>http://aka.ms/asfp_privacy</value>
+  </data>
+  <data name="TOU_Link" xml:space="preserve">
+    <value>http://aka.ms/asfp_agreement</value>
+  </data>
+  <data name="Submit_Subject" xml:space="preserve">
+    <value>Microsoft Advanced Support for Partners (ASfP) Offering Purchase Confirmation</value>
+  </data>
+</root>

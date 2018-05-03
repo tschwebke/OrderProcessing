@@ -1,0 +1,249 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+        /* Based on The MailChimp Reset INLINE: Yes. */
+        /* Client-specific Styles */
+        /*#outlook a {
+            padding: 0;
+        }*/
+        /* Force Outlook to provide a "view in browser" menu link. */
+        body {
+            font-family: 'Segoe', 'Segoe UI', Arial, sans-serif;
+            font-size: 10pt;
+            width: 100% !important;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+        .ExternalClass {
+            width: 100%;
+        }
+            /* Force Hotmail to display emails at full width */
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+        /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+        /* End reset */
+
+        /* Some sensible defaults for images
+        Bring inline: Yes. */
+        img {
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        /* Yahoo paragraph fix
+        Bring inline: Yes. */
+        p {
+            margin: 1em 0;
+        }
+
+        /* Hotmail header color reset
+        Bring inline: Yes. */
+        h1, h2, h3, h4, h5, h6 {
+            color: black !important;
+        }
+
+            h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+                color: blue !important;
+            }
+
+                h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active {
+                    color: red !important; /* Preferably not the same color as the normal header link color.  There is limited support for psuedo classes in email clients, this was added just for good measure. */
+                }
+
+                h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+                    color: purple !important; /* Preferably not the same color as the normal header link color. There is limited support for psuedo classes in email clients, this was added just for good measure. */
+                }
+
+        /* Outlook 07, 10 Padding issue fix
+        Bring inline: No.*/
+        table td {
+            border-collapse: collapse;
+            font-family: 'Segoe UI', 'Calibri';
+            font-size: 10pt;
+        }
+
+        /* Remove spacing around Outlook 07, 10 tables
+        Bring inline: Yes */
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        /* Styling your links has become much simpler with the new Yahoo.  In fact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
+        Bring inline: Yes. */
+        a {
+            color: orange;
+        }
+
+        /***************************************************
+        ****************************************************
+        MOBILE TARGETING
+        ****************************************************
+        ***************************************************/
+        @media only screen and (max-device-width: 480px) {
+            /* Part one of controlling phone number linking for mobile. */
+            a [href^="tel"], a[href^="sms"]; {
+                text-decoration: none;
+                color: orange; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: orange !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+        }
+
+        /* CUSTOM STYLES */
+
+        .grey_heading {
+            color: #1f1f1f;
+            font-family: 'Segoe UI';
+            font-size: 21px;
+            font-weight: normal;
+        }
+
+        /* be careful using the Segoe Light rendering ... works in some browsers, some not */
+        /* http://stackoverflow.com/questions/9415372/segoe-ui-light-font-does-not-render-in-firefox-7 */
+
+        .heading {
+            color: white;
+            font-family: 'Segoe UI Light','Segoe WPC','Segoe UI';
+            font-size: 28px;
+        }
+
+        /* More Specific Targeting */
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            /* You guessed it, ipad (tablets, smaller screens, etc) */
+            /* repeating for the ipad */
+            a [href^="tel"], a[href^="sms"]; {
+                text-decoration: none;
+                color: orange; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: orange !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+        }
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            /* Put your iPhone 4g styles in here */
+        }
+
+        /* Android targeting */
+        @media only screen and (-webkit-device-pixel-ratio:.75) {
+            /* Put CSS for low density (ldpi) Android layouts in here */
+        }
+
+        @media only screen and (-webkit-device-pixel-ratio:1) {
+            /* Put CSS for medium density (mdpi) Android layouts in here */
+        }
+
+        @media only screen and (-webkit-device-pixel-ratio:1.5) {
+            /* Put CSS for high density (hdpi) Android layouts in here */
+        }
+        /* end Android targeting */
+    </style>
+
+    <!-- Targeting Windows Mobile -->
+    <!--[if IEMobile 7]>
+    <style type="text/css">
+    </style>
+    <![endif]-->
+    <!-- ***********************************************
+    ****************************************************
+    END MOBILE TARGETING
+    ****************************************************
+    ************************************************ -->
+    <!--[if gte mso 9]>
+        <style>
+        /* Target Outlook 2007 and 2010 */
+        </style>
+    <![endif]-->
+</head>
+<body>
+    <!-- Wrapper/Container Table: Use a wrapper table to control the width and the background color consistently of your email. Use this approach instead of setting attributes on the body tag. -->
+    <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+        <tr>
+            <td valign="top">
+
+                <!-- Tables are the most common way to format your email consistently. Set your table widths inside cells and in most cases reset cellpadding, cellspacing, and border to zero. Use nested tables as a way to space effectively in your message. -->
+                <!-- This email is Person-specific, so to make it a bit more personal, we will address them by name -->
+
+                <table id='tile_main' style='width:580px;' cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="width:32px">&nbsp;</td>
+                        <td style="height:92px;vertical-align:bottom;">
+                            <div style="display:inline-block;vertical-align:text-bottom">
+                                <span class="heading">###BANNER###</span><br />
+                                <span style="font-size:105%">###TAGLINE###</span><br />
+                                <br />
+                            </div>
+                        </td>
+                        <td style="width:320px;height:106px;">
+                            <img src="banner_graphic.png" style="margin-top:20px;" />
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+
+                <table style="width: 580px;">
+                    <tr>
+                        <td style="width:32px;">&nbsp;</td>
+                        <td valign="top">###MAIN_CONTENT###</td>
+                    </tr>
+                </table>
+
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <!-- this is the footer which is designed along the new corporate branding guidelines -->
+            <table>
+                <tr>
+                    <td style="background-color:white;" width="400"><img src="microsoft_logo_300px.png" /></td>
+                    <td style="background-color:white;">
+                        <a href="###NOTIFICATION_HYPERLINK###" style="color:#1f1f1f; text-decoration: none;" target="_blank" title="Manage your subscriptions and notification settings">Documentation about this Notification</a><br />
+                        <a href="http://go.microsoft.com/fwlink/?LinkId=81184" style="color:#1f1f1f; text-decoration: none;" target="_blank" title="Legalese about this email">Privacy Statement</a><br />
+                        <a href="http://www.microsoft.com/About/Legal/EN/US/IntellectualProperty/Copyright/default.aspx" style="color:#1f1f1f; text-decoration: none;" target="_blank" title="More legalese">Terms of Use</a>
+                    </td>
+                </tr>
+            </table>
+        </tr>
+    </table>
+    <!-- End of wrapper table -->
+</body>
+</html>
+
+<!-- debug information will be appended after this point -->

@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2829529-0AC5-4A89-AF53-FF53B0356B3E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Operations</RootNamespace>
+    <AssemblyName>Microsoft.Operations</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <DocumentationFile>bin\Debug\Microsoft.Operations.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=3.1.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth, Version=15.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.SharePoint.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.Runtime, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.TestManagement.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.TestManagement.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.TestManagement.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.TestManagement.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.VersionControl.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.VersionControl.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Common.Integration, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.ControlsCore, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Proxy, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.Client, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.VisualStudio.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.VisualStudio.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.Integration, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.VisualStudio.Services.Integration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.WebApi, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.VisualStudio.Services.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\SevenZipSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebMarkupMin.Core, Version=0.8.9.0, Culture=neutral, PublicKeyToken=99472178d266584b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\WebMarkupMin.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveDirectory.cs" />
+    <Compile Include="Azure\AzureAudit.cs" />
+    <Compile Include="Azure\AzureLogger.cs" />
+    <Compile Include="Azure\AzureStorage.cs" />
+    <Compile Include="DateMagic.cs" />
+    <Compile Include="Email\Email.cs" />
+    <Compile Include="Email\EmailMessageLauncher.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="Extensions\System.Data.SqlClient.SqlConnection.cs" />
+    <Compile Include="Models\AdopsIssue.cs" />
+    <Compile Include="Models\AdopsSummary.cs" />
+    <Compile Include="Models\ErrorDetail.cs" />
+    <Compile Include="Email\ExchangeServiceAutomatic.cs" />
+    <Compile Include="Extensions\Microsoft.SharePoint.Client.Web.cs" />
+    <Compile Include="Extensions\Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItem.cs" />
+    <Compile Include="Extensions\Microsoft.TeamFoundation.WorkItemTracking.Client.WorkItemStore.cs" />
+    <Compile Include="Extensions\Microsoft.WindowsAzure.Storage.Queue.CloudQueue.cs" />
+    <Compile Include="Extensions\Microsoft.WindowsAzure.Storage.Queue.CloudQueueMessage.cs" />
+    <Compile Include="Extensions\Microsoft.WindowsAzure.Storage.Table.CloudTable.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.List.cs" />
+    <Compile Include="Extensions\System.Collections.Generic.Dictionary.cs" />
+    <Compile Include="Extensions\System.Data.SqlClient.SqlCommand.cs" />
+    <Compile Include="Extensions\System.DateTime.cs" />
+    <Compile Include="Extensions\System.Drawing.Image.cs" />
+    <Compile Include="Extensions\System.Int32.cs" />
+    <Compile Include="Extensions\System.IO.Directory.cs" />
+    <Compile Include="Extensions\System.IO.DirectoryInfo.cs" />
+    <Compile Include="Extensions\System.IO.Stream.cs" />
+    <Compile Include="Extensions\System.IO.StreamWriter.cs" />
+    <Compile Include="Extensions\System.Linq.Xml.XElement.cs" />
+    <Compile Include="Extensions\System.Object.cs" />
+    <Compile Include="Extensions\System.Reflection.Assembly.cs" />
+    <Compile Include="Extensions\System.String.cs" />
+    <Compile Include="Extensions\System.Text.StringBuilder.cs" />
+    <Compile Include="Extensions\System.Xml.XmlDocument.cs" />
+    <Compile Include="FileSystem.cs" />
+    <Compile Include="Logging.cs" />
+    <Compile Include="Maths.cs" />
+    <Compile Include="Models\ABOProject.cs" />
+    <Compile Include="Models\ABOProject_Search.cs" />
+    <Compile Include="Models\ABOScore.cs" />
+    <Compile Include="Models\AuditFile.cs" />
+    <Compile Include="Models\AuditEmail.cs" />
+    <Compile Include="Models\CBOProject.cs" />
+    <Compile Include="Models\CloudTfsUserSetting.cs" />
+    <Compile Include="Models\CloudTfsUser.cs" />
+    <Compile Include="Models\CloudInitiative.cs" />
+    <Compile Include="Models\CloudContact.cs" />
+    <Compile Include="Models\CloudProject.cs" />
+    <Compile Include="Models\LogDetail.cs" />
+    <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Models\ProjectType.cs" />
+    <Compile Include="Models\SBOProject.cs" />
+    <Compile Include="Models\TfsFieldItem.cs" />
+    <Compile Include="Models\TfsFieldItemUsage.cs" />
+    <Compile Include="Models\TfsHelper.cs" />
+    <Compile Include="Models\TfsTempWorkspace.cs" />
+    <Compile Include="Models\WorkItemClone.cs" />
+    <Compile Include="Models\WorkItemSystemFields.cs" />
+    <Compile Include="Models\XBOCommonFields.cs" />
+    <Compile Include="MultipleHostsFactory.cs" />
+    <Compile Include="Optimize.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\RAR.cs" />
+    <Compile Include="Utilities\SEVENZIP.cs" />
+    <Compile Include="SharePointMagic.cs" />
+    <Compile Include="SpreadsheetMagic.cs" />
+    <Compile Include="Models\StepCompletionParameter.cs" />
+    <Compile Include="StringCache.cs" />
+    <Compile Include="Utilities\ZIP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\System.ServiceProcess.ServiceBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\Microsoft.TeamFoundation.Client.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.Common.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.TestManagement.Client.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.TestManagement.Common.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.VersionControl.Client.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.VersionControl.Common.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.Client.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.Common.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.Controls.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll" />
+    <Content Include="Libraries\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" />
+    <Content Include="Libraries\Microsoft.VisualStudio.Services.Client.dll" />
+    <Content Include="Libraries\Microsoft.VisualStudio.Services.Common.dll" />
+    <Content Include="Libraries\Microsoft.VisualStudio.Services.Integration.dll" />
+    <Content Include="Libraries\Microsoft.VisualStudio.Services.WebApi.dll" />
+    <Content Include="Libraries\Microsoft.WITDataStore32.dll" />
+    <Content Include="Libraries\System.Net.Http.Formatting.dll" />
+    <Content Include="Libraries\System.Web.Http.dll" />
+    <Content Include="Libraries\_readme.txt" />
+    <EmbeddedResource Include="Images\microsoft_logo_300px.png" />
+    <EmbeddedResource Include="Images\excel_logo_64.gif" />
+    <Compile Include="Extensions\HttpContext.Current.Response.cs" />
+    <Content Include="Libraries\7z.dll" />
+    <Content Include="Libraries\EPPlus.dll" />
+    <Content Include="Libraries\ExcelLibrary.dll" />
+    <Content Include="Libraries\Ionic.Zip.dll" />
+    <Content Include="Libraries\Microsoft.Data.Edm.dll" />
+    <Content Include="Libraries\Microsoft.Data.OData.dll" />
+    <Content Include="Libraries\Microsoft.Data.Services.Client.dll" />
+    <Content Include="Libraries\Microsoft.Exchange.WebServices.Auth.dll" />
+    <Content Include="Libraries\Microsoft.Exchange.WebServices.dll" />
+    <Content Include="Libraries\Microsoft.ServiceBus.dll" />
+    <Content Include="Libraries\Microsoft.SharePoint.Client.dll" />
+    <Content Include="Libraries\Microsoft.SharePoint.Client.Runtime.dll" />
+    <Content Include="Libraries\Microsoft.WindowsAzure.Configuration.dll" />
+    <Content Include="Libraries\Microsoft.WindowsAzure.Storage.dll" />
+    <Content Include="Libraries\Newtonsoft.Json.dll" />
+    <Content Include="Libraries\SevenZipSharp.dll" />
+    <Content Include="Libraries\SharpCompress.dll" />
+    <Content Include="Libraries\System.Spatial.dll" />
+    <Content Include="Libraries\WebMarkupMin.Core.dll" />
+    <EmbeddedResource Include="Templates\Blank.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\System.Collections.IEnumerable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\Microsoft.Exchange.WebServices.Data.EmailMessage.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

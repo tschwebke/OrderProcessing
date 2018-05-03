@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio\2017\enterprise\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
 <FxCopReport Version="15.0">
  <Targets>
-  <Target Name="E:\Dev Projects\CSP\CloudSolutionProvider\Microsoft.Operations.CSP.RegSys\bin\Debug\Microsoft.Operations.CSP.RegSys.exe">
+  <Target Name="E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.CSP.RegSys\bin\Debug\Microsoft.Operations.CSP.RegSys.exe">
    <Modules>
     <Module Name="microsoft.operations.csp.regsys.exe">
      <Namespaces>
@@ -12,8 +12,8 @@
          <Members>
           <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Provide correct arguments to formatting methods" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2018-04-18 19:34:21Z" FixCategory="DependsOnFix">
-             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="E:\Dev Projects\CSP\CloudSolutionProvider\Microsoft.Operations.CSP.RegSys" File="ProjectInstaller.cs" Line="15">Method 'ProjectInstaller.ProjectInstaller()' calls 'string.Format(string, object)' and does not provide a format item for argument "1". The provided format string is: '"RegSys TFS Connector v2"'</Issue>
+            <Message TypeName="Provide correct arguments to formatting methods" Category="Microsoft.Usage" CheckId="CA2241" Status="Active" Created="2018-05-03 21:36:33Z" FixCategory="DependsOnFix">
+             <Issue Name="MissingFormatItem" Certainty="75" Level="Warning" Path="E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.CSP.RegSys" File="ProjectInstaller.cs" Line="15">Method 'ProjectInstaller.ProjectInstaller()' calls 'string.Format(string, object)' and does not provide a format item for argument "1". The provided format string is: '"RegSys TFS Connector v2"'</Issue>
             </Message>
            </Messages>
           </Member>

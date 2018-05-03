@@ -1,0 +1,138 @@
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Operations.xml
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Operations.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Operations.pdb
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\EPPlus.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Ionic.Zip.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Data.Edm.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Data.OData.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Data.Services.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Exchange.WebServices.Auth.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.Exchange.WebServices.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.ServiceBus.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.SharePoint.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.Common.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.TestManagement.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.TestManagement.Common.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.VersionControl.Common.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Common.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Controls.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.Client.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.Common.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.Integration.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.WebApi.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.WindowsAzure.Storage.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Newtonsoft.Json.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\SevenZipSharp.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\SharpCompress.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\System.Net.Http.Formatting.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\System.Spatial.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\System.Web.Http.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\WebMarkupMin.Core.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.IdentityModel.Extensions.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.mshtml.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.VSHelp.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\EnvDTE.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.ProjectAggregator.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.ComponentModelHost.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.VSHelp80.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.GraphModel.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\stdole.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.MSXML.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Language.NavigateTo.Interfaces.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.12.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.CommandBars.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\EnvDTE80.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.11.0.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.v2016.csprojResolveAssemblyReference.cache
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.v2016.csproj.CoreCompileInputs.cache
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.v2016.csproj.CopyComplete
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.dll
+E:\CommonCodeLibrary\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.pdb
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Operations.xml
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Operations.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Operations.pdb
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\EPPlus.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Ionic.Zip.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Data.Edm.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Data.OData.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Data.Services.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Exchange.WebServices.Auth.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.Exchange.WebServices.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.ServiceBus.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.SharePoint.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.Common.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.TestManagement.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.TestManagement.Common.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.VersionControl.Common.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Common.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Controls.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.ControlsCore.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.Client.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.Common.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.Integration.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Services.WebApi.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.WindowsAzure.Storage.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Newtonsoft.Json.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\SevenZipSharp.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\SharpCompress.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\System.Net.Http.Formatting.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\System.Spatial.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\System.Web.Http.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\WebMarkupMin.Core.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.IdentityModel.Extensions.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.mshtml.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.11.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.VSHelp.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.9.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\EnvDTE.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.ProjectAggregator.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.ComponentModelHost.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Shell.Interop.10.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.VSHelp80.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.GraphModel.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\stdole.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.MSXML.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.Language.NavigateTo.Interfaces.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.12.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.CommandBars.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.10.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\EnvDTE80.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.11.0.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.v2016.csprojResolveAssemblyReference.cache
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.v2016.csproj.CoreCompileInputs.cache
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.v2016.csproj.CopyComplete
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.dll
+E:\Dev Projects\OrderProcessing\OrderProcessing\Microsoft.Operations.v2016\obj\Debug\Microsoft.Operations.pdb
